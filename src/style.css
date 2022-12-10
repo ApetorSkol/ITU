@@ -8,6 +8,8 @@ a{
 }
 #top{
     background-color: red;
+    position:fixed;
+    width: 100%;
 }
 #bar {
     height: 50px;
@@ -28,12 +30,69 @@ a{
     padding: 15px;
 }
 
+
 #menu>ul{
-    margin: 0;
+    margin:0;
+    padding: 0;
+    list-style: none;
 }
 #menu>ul>li{
     display: inline-block;
+    position: relative;
+    line-height: 21px;
+    text-align: left;
     padding: 0px 15px 0px 15px;
+    min-width:150px;
+}
+
+#menu>ul>li:hover{
+    background-color: #8B0000;
+    padding-bottom: 1px;
+}
+
+#menu>ul>li>ul.dropdown{
+    min-width: 100%;
+    min-height: auto;
+    background-color: #8B0000;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+}
+
+#menu>ul>li:hover>ul.dropdown{
+    display: block;
+}
+
+#menu>ul>li>ul.dropdown>li{
+    display: block;
+    padding: 5px;
+    margin: 5px;
+}
+
+#menu>ul>li>ul.dropdown>li>a{
+    text-align: left;
+}
+
+#right_side{
+    height: 800px;               /*random vyska aby som videl ako to bude vyzerat*/
+    width: 50%;
+    float: right;
+    background-color: gray;     /*random pozadie aby som videl ako to bude vyzerat*/
+}
+
+#left_side{
+    height: 800px;               /*random vyska aby som videl ako to bude vyzerat*/
+    width: 50%;
+    background-color: black;    /*random pozadie aby som videl ako to bude vyzerat*/
 }
 
 
+#bottom{
+    background-color: red;      /*random pozadie aby som videl ako to bude vyzerat*/
+    height: 300px;                /*random vyska aby som videl ako to bude vyzerat*/
+}
+
+#bottom>h2{
+    margin:0;
+}
