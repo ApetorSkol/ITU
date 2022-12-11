@@ -130,6 +130,7 @@ button{
 #mid>#wellness{
     margin-left: 300px;
     height: 500px;
+    padding-top: 100px;
 }
 
 #mid>#wellness>h2{
@@ -149,6 +150,7 @@ button{
 #mid>#massage{
     margin-left: 300px;
     height: 500px;
+    padding-top: 100px;
     
 }
 #mid>#massage>h2{
@@ -168,6 +170,7 @@ button{
 #mid>#sauna{
     margin-left: 300px;
     height: 500px;
+    padding-top: 100px;
 }
 
 #mid>#sauna>h2{
