@@ -2,21 +2,45 @@ body{
     margin: 0;
 }
 
+@font-face {
+    font-family: 'bamboo_font';
+    src: url("HanaleiFill-Regular.ttf");
+}
+
+
 a{
     text-decoration: none;
-    color: white;
+    color: #52451D;
+    font-family:sans-serif;
 }
+
+h1>a{
+    font-family: 'bamboo_font';
+    font-size:larger;
+}
+
+h2{
+    font-family: sans-serif;
+    
+}
+
+button{
+    background-color:#DEBA50;
+    font-family: sans-serif;
+    color: #52451D;
+}
+
 #top{
-    background-color: red;
+    
     position:fixed;
     width: 100%;
+    height: 75px;
 }
 #bar {
     height: 50px;
     display: flex;
     align-items:center;
-    border-bottom-style: solid;
-    border-width: 1px;
+    background-image: url("bamboo_bg.jpg");
 }
 
 #bar>#title{
@@ -30,6 +54,9 @@ a{
     padding: 15px;
 }
 
+#menu{
+    background-color: #DEBA50;
+}
 
 #menu>ul{
     margin:0;
@@ -39,21 +66,20 @@ a{
 #menu>ul>li{
     display: inline-block;
     position: relative;
-    line-height: 21px;
+    line-height: 25px;
     text-align: left;
     padding: 0px 15px 0px 15px;
     min-width:150px;
 }
 
 #menu>ul>li:hover{
-    background-color: #8B0000;
-    padding-bottom: 1px;
+    background-color: #B89A42;
 }
 
 #menu>ul>li>ul.dropdown{
     min-width: 100%;
     min-height: auto;
-    background-color: #8B0000;
+    background-color: #B89A42;
     display: none;
     position: absolute;
     z-index: 999;
@@ -73,26 +99,90 @@ a{
 #menu>ul>li>ul.dropdown>li>a{
     text-align: left;
 }
-
+#mid{
+    padding-top: 75px;
+}
 #right_side{
     height: 800px;               /*random vyska aby som videl ako to bude vyzerat*/
     width: 50%;
     float: right;
-    background-color: gray;     /*random pozadie aby som videl ako to bude vyzerat*/
+    background-color: white;     /*random pozadie aby som videl ako to bude vyzerat*/
 }
 
 #left_side{
     height: 800px;               /*random vyska aby som videl ako to bude vyzerat*/
     width: 50%;
-    background-color: black;    /*random pozadie aby som videl ako to bude vyzerat*/
+    background-color: white;    /*random pozadie aby som videl ako to bude vyzerat*/
 }
 
 
 #bottom{
-    background-color: red;      /*random pozadie aby som videl ako to bude vyzerat*/
+    background-color: #DEBA50;      /*random pozadie aby som videl ako to bude vyzerat*/
     height: 300px;                /*random vyska aby som videl ako to bude vyzerat*/
 }
 
 #bottom>h2{
     margin:0;
+}
+
+/*              REGENERATION            */
+
+#mid>#wellness{
+    margin-left: 300px;
+    height: 500px;
+}
+
+#mid>#wellness>h2{
+    font-size: 50px;
+    padding-left: 30px;
+    padding-top: 20px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    background-image: url("wellness.jpeg");
+    background-repeat: no-repeat;
+    background-size: 500px;
+    border-radius: 5px;
+    height:70px;
+    width: 400px;
+}
+
+#mid>#massage{
+    margin-left: 300px;
+    height: 500px;
+    
+}
+#mid>#massage>h2{
+    font-size: 50px;
+    padding-left: 30px;
+    padding-top: 20px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    background-image: url("massage.jpeg");
+    background-repeat: no-repeat;
+    background-size: 500px;
+    height:70px;
+    width: 400px;
+    border-radius: 5px;
+    
+}
+#mid>#sauna{
+    margin-left: 300px;
+    height: 500px;
+}
+
+#mid>#sauna>h2{
+    
+    font-size: 50px;
+    padding-left: 30px;
+    padding-top: 20px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    background-image: url("sauna.jpeg");
+    background-repeat: no-repeat;
+    background-size: 500px;
+    height:70px;
+    width: 400px;
+    border-radius: 5px;
+    
+    
 }
