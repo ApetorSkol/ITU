@@ -26,7 +26,7 @@
 
         <section id="menu">
             <ul>
-                <li><a href="">Všetko</a></li>
+                <li><a href="index.html">Domov</a></li>
                 <li>
                     <a href="sport.html">Šport</a>
                     <ul class="dropdown">
@@ -60,30 +60,32 @@
         </section>
         
         <section id="left_side">
-            <!-- mapa -->
-            <!--div element na mapu-->
-            <div id="map"></div> 
-            <!-- definovanie mapy so stredom na slobodaku-->
-            <script>
-                function initMap(){
-                    var options = {
-                        zoom:12,
-                        center:{lat:49.1950705,lng:16.608218}
-                    }
-                    var map = new google.maps.Map(document.getElementById('map'), options)
-                }
-            </script>
-            <!-- volanie konkretneho APicka na inicializaciu-->
-            <script async
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_jFvlb3oQ-FiBNlzbc5jmDuQsB0IhKJc&callback=initMap">
-            </script>
+            <div>
+                <p class="citat" >
+                    Všetky voľnočasové aktivity na jednom mieste!
+                </p>
+            </div>
+            <div>
+                <div class="search">
+                    <div class="middle-section">
+                        <input class="search-bar" type="text" placeholder="Search">
+                        <button class="search-button">
+                          <img class="search-icon" src="icons/search.svg">
+                        </button>
+                      </div>
+                </div>
+            </div>
         </section>
     </div>
     
 
     <div id="bottom">
         <!-- nejaky list kontaktov-->
-        <h2>kontaktujte nas</h2>
+        <h2 style="margin: 5px">Kontaktujte nas</h2>
+        <p style="margin: 5px">CZ tel. číslo: +420 111 111 111</p>
+        <p style="margin: 5px">SK tel. číslo: +421 222 222 222</p>
+        <p style="margin: 5px"> email: info@bambus.cz</p>
+        <p style="margin: 5px">adresa: Božetěchova 1/2, 612 00 Brno-Královo Pole</p>
     </div>
 
 </body>
