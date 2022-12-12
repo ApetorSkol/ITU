@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <style>
+        #map{
+            height:92%;
+            width:100%;
+        }
+    </style>
 </head>
 <body>
     <div id="top">
@@ -55,6 +61,22 @@
         
         <section id="left_side">
             <!-- mapa -->
+            <!--div element na mapu-->
+            <div id="map"></div> 
+            <!-- definovanie mapy so stredom na slobodaku-->
+            <script>
+                function initMap(){
+                    var options = {
+                        zoom:12,
+                        center:{lat:49.1950705,lng:16.608218}
+                    }
+                    var map = new google.maps.Map(document.getElementById('map'), options)
+                }
+            </script>
+            <!-- volanie konkretneho APicka na inicializaciu-->
+            <script async
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_jFvlb3oQ-FiBNlzbc5jmDuQsB0IhKJc&callback=initMap">
+            </script>
         </section>
     </div>
     
