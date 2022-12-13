@@ -7,20 +7,36 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
     <div id="top">
         <section id="bar">
             <h1 id="title" >
                 <a href="index.html">Bambus</a> <!-- plus nejaka ikonka  -->
             </h1>
-            <div id="login">
-                <a id="login" href="">LOGIN</a> <!-- preklik na login page alebo nejake okno-->
+            <div class="container">
+                <button type="submit" class="btn" onclick="openPopup()">
+                    Prihlásiť sa
+                </button>
+                <div class="popup" id="popup">
+                    
+                    <h2>Prihlasiť sa</h2>
+                    <p>Nemáte účet? <span class="Registrovat_sa">Registrovať sa</span></p>
+                    <form class="login_form" action="home.html" method="post" name="form" onsubmit="return validated()">
+                        <div class="font">Email alebo tel. číslo</div>
+                        <input autocomplete="off" type="text" name="email">
+                        <div class="font font2">Heslo</div>
+                        <input type="password" name="password">
+                    </form>
+                    <button type="submit" onclick=closePopup()>Prihlásiť sa</button>
+                </div>
             </div>
+            <script src="valid.js"></script>
         </section>
 
         <section id="menu">
             <ul>
-                <li><a href="">Všetko</a></li>
+                <li><a href="index.html">Domov</a></li>
                 <li>
                     <a href="sport.html">Šport</a>
                     <ul class="dropdown">
@@ -49,5 +65,34 @@
         </section>
 
     </div>
+    <div id="mid">
+        <section id="wellness">
+            <h2>Wellness</h2>
+        </section>
+        <section id="massage">
+            <h2>Masáže</h2>
+        </section>
+        <section id="sauna">
+            <h2>Sauny</h2>
+        </section>
+    </div>
+    <div id="bottom">
+        <!-- nejaky list kontaktov-->
+        <h2 style="margin: 5px">Kontaktujte nas</h2>
+        <p style="margin: 5px">CZ tel. číslo: +420 111 111 111</p>
+        <p style="margin: 5px">SK tel. číslo: +421 222 222 222</p>
+        <p style="margin: 5px"> email: info@bambus.cz</p>
+        <p style="margin: 5px">adresa: Božetěchova 1/2, 612 00 Brno-Královo Pole</p>
+    </div>
+
+<script>
+let popup = document.getElementById("popup");
+function openPopup(){
+    popup.classList.add("open-popup");
+}
+function closePopup(){
+    popup.classList.remove("open-popup");
+}
+</script>
 </body>
 </html>

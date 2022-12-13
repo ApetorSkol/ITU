@@ -13,6 +13,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="top">
         <section id="bar">
@@ -24,12 +25,18 @@
                     Prihlásiť sa
                 </button>
                 <div class="popup" id="popup">
-                    <img src="icons/404-tick.png">
                     <h2>Prihlasiť sa</h2>
                     <p>Nemáte účet? <span class="Registrovat_sa">Registrovať sa</span></p>
-                    <button type="button" onclick=closePopup()>OK</button>
+                    <form class="login_form" action="home.html" method="post" name="form" onsubmit="return validated()">
+                        <div class="font">Email alebo tel. číslo</div>
+                        <input autocomplete="off" type="text" name="email">
+                        <div class="font font2">Heslo</div>
+                        <input type="password" name="password">
+                    </form>
+                    <button type="submit" onclick=closePopup()>Prihlásiť sa</button>
                 </div>
             </div>
+            <script src="valid.js"></script>
         </section>
 
         <section id="menu">
@@ -100,6 +107,7 @@
 let popup = document.getElementById("popup");
 function openPopup(){
     popup.classList.add("open-popup");
+    
 }
 function closePopup(){
     popup.classList.remove("open-popup");
