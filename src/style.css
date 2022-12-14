@@ -485,3 +485,71 @@ button{
     margin-top: 50px;
 }
 
+.sport_button{
+    display: block;
+    margin-top: 60px; 
+    margin-left: 300px;
+    height: 190px;
+    width: 350px;
+    line-height: 3em;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(255, 30, 30, 0.1), inset 0 0 0 rgba(0,0,0,0.1);
+    text-align: center;
+    font-size: 30px;
+    color: #fff833;
+    background: url(football.jpg);
+    background-size: cover;
+    border: 0.1em solid #ecff21;
+    border-radius: 50%;
+    box-sizing: border-box;
+    overflow:visible;
+    padding-right: 140px;
+}
+
+.krasa_button{
+    display: block;
+    margin-top: 100px;
+    margin-left: 300px;
+    height: 190px;
+    width: 350px;
+    border-radius: 60px;
+    line-height: 3em;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(255, 30, 30, 0.1), inset 0 0 0 rgba(0,0,0,0.1);
+    text-align: center;
+    font-size: 30px;
+    color: #fff833;
+    background: url(krasa.jpg);
+    background-size: cover;
+    border: 0.1em solid #ecff21;
+    border-radius: 50%;
+    box-sizing: border-box;
+    overflow:visible;
+    padding-left: 210px;
+}
+
+.regeneracia_button{
+    display: block;
+    margin-top: 100px;
+    margin-left: 300px;
+    height: 190px;
+    width: 350px;
+    border-radius: 60px;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(255, 30, 30, 0.1), inset 0 0 0 rgba(0,0,0,0.1);
+    font-size: 30px;
+    color: #fff833;
+    background: url(listy.jpg);
+    background-size: cover;
+    border: 0.1em solid #ecff21;
+    border-radius: 50%;
+    overflow:visible;
+    padding-right: 50px;
+}
+
+.regeneracia_button:hover,
+.krasa_button:hover,
+.sport_button:hover{
+    cursor: pointer;
+    opacity: 0.7;
+  }
