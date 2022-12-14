@@ -26,7 +26,7 @@
                         <div class="font font2">Heslo</div>
                         <input type="password" name="password">
                     </form>
-                    <button type="submit" onclick=closePopup()>Prihlásiť sa</button>
+                    <button type="submit" onclick="closePopup()">Prihlasiť sa</button>
                 </div>
             </div>
             <script src="valid.js"></script>
@@ -63,15 +63,58 @@
         </section>
 
     </div>
-    <div id="mid">
-        <section id="wellness">
-            <h2>Wellness</h2>
+    <div id="mid" style="margin: 12px">
+        <section id="right_side">
+            <div id="map"></div> 
+            <script src="map_init.js"></script>
+            <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_jFvlb3oQ-FiBNlzbc5jmDuQsB0IhKJc&callback=initMap">
+            </script>
         </section>
-        <section id="massage">
-            <h2>Masáže</h2>
-        </section>
-        <section id="sauna">
-            <h2>Sauny</h2>
+        <section id="left_side">
+            <div class="video-preview">
+                <img class="thumbnail" src="massage.jpeg">
+                <p class="video-title">
+                    <h2>nejaky nazov spolocnosti</h2>
+                </p>
+                <p class="video-author">
+                    <h3>brno namesti svobody</h3>
+                </p>
+                <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
+            </div>
+
+            <div class="video-preview">
+                <img class="thumbnail" src="massage.jpeg">
+                <p class="video-title">
+                    <h2>nejaky nazov spolocnosti</h2>
+                </p>
+                <p class="video-author">
+                    <h3>brno namesti svobody</h3>
+                </p>
+                <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
+            </div>
+
+            <div class="video-preview">
+                <img class="thumbnail" src="massage.jpeg">
+                <p class="video-title">
+                    <h2>nejaky nazov spolocnosti</h2>
+                </p>
+                <p class="video-author">
+                    <h3>brno namesti svobody</h3>
+                </p>
+            <button type="submit" onclick=initMap("brno-kralovo-pol")>Zobrazit na mape</button>
+            </div>
+
+            <div class="video-preview">
+                <img class="thumbnail" src="massage.jpeg">
+                <p class="video-title">
+                    <h2>nejaky nazov spolocnosti</h2>
+                </p>
+                <p class="video-author">
+                    <h3>brno namesti svobody</h3>
+                </p>
+            <button type="submit" onclick=initMap("brno-kralovo-pol")>Zobrazit na mape</button>
+            </div>
         </section>
     </div>
     <div id="bottom">
@@ -90,7 +133,35 @@ function openPopup(){
 }
 function closePopup(){
     popup.classList.remove("open-popup");
-}
+} 
+
+function mapChange(adresos){
+    // premenna adresa sa prisposobi pre http request
+    adresos.split(" ").join("%20");
+    const Http = new XMLHttpRequest();
+    const url='https://maps.googleapis.com/maps/api/geocode/json?address=' + adresos + '&key=AIzaSyA_jFvlb3oQ-FiBNlzbc5jmDuQsB0IhKJc';
+
+    cars = [0,0];
+    getJSON(url,
+    function(err, data) {
+    if (err !== null) {
+        alert('Something went wrong: ' + err);
+    } else {
+        var latitude =  Number(data.results[0].geometry.location.lat);
+        var length = Number(data.results[0].geometry.location.lng);
+        var options = {
+            zoom:14,
+            center:{lat:latitude,lng:length}
+        }
+        var map = new google.maps.Map(document.getElementById('map'), options)
+        var marker = new google.maps.Marker({
+            position: {lat:latitude,lng:length},
+            map: map
+        });
+    }
+    });
+} 
+
 </script>
 </body>
 </html>

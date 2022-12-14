@@ -110,14 +110,13 @@ button{
     text-align: left;
 }
 #mid{
-    padding-top: 75px;
+    padding-top: 82px;
 }
 #right_side{
     height: 800px;               /*random vyska aby som videl ako to bude vyzerat*/
     width: 50%;
     float: right;
     background-color: white;     /*random pozadie aby som videl ako to bude vyzerat*/
-
 }
 
 #left_side{
@@ -266,9 +265,8 @@ button{
     align-items: center;
     justify-content: right;
     text-align: right;
+
     }
-
-
 
 .btn{
     padding: 10px 30px;
@@ -336,6 +334,7 @@ button{
     border-radius: 4px;
     cursor: pointer;
     box-shadow: 0px 3px 2px black;
+    display: inline-block;
 }
 
 .popup button:hover{
@@ -368,4 +367,35 @@ button{
 }
 .login_form .font2{
 	margin-top: 30px;
+}
+
+.video-preview{
+    width: 30%;
+    display: inline-block;
+    margin: 8px;
+}
+
+.thumbnail{
+    width:300px;
+}
+
+#map{
+    height:100%;
+    width: 100%;
+    z-index: 0;
+}
+
+.video-preview button{
+    width: 50%;
+    margin-top: 5px;
+    padding: 5px 0;
+    background: #DEBA50;
+    color: rgb(0, 0, 0);
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0px 3px 2px black;
+    display: inline-block;
 }

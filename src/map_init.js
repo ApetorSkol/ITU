@@ -15,9 +15,10 @@ var getJSON = function(url, callback) {
 };
 
 
-function initMap(adresos){
+function initMap(){
     // adresa 
     var adresos = "brno namesti svobody"
+    //var adresos = document.getElementById("video-author").value;
     // premenna adresa sa prisposobi pre http request
     adresos.split(" ").join("%20");
     const Http = new XMLHttpRequest();
