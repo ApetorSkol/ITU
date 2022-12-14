@@ -681,3 +681,12 @@ button{
     cursor: pointer;
     opacity: 0.7;
   }
+#popup.popup>button#close_btn{
+    width: 20px;
+    height: 20px;
+    margin-left: 350px;
+    margin-top: 30px;
+    overflow: visible;
+    padding-top: 0px;
+
+}
