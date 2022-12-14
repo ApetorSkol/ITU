@@ -9,12 +9,135 @@
  </head>
 
  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
     <div id="top">
         <section id="bar">
             <h1 id="title" >
                 <a href="index.html">Bambus</a> <!-- plus nejaka ikonka  -->
             </h1>
             <div class="container">
+                <button type="submit" class="btn" onclick="addopenPopup()">
+                    Pridať svoj podnik
+                </button>
+                <div class="popup" id="add_popup">
+                    <h2>Pridať svoj podnik</h2>
+                    <form id="add_form">
+                        <div class="input-category">
+                            <input id="category-sport" name="category" type="radio" value="sport"/>
+                            <label class="inline" for="category-sport">Šport</label>
+                            
+                            <input id="category-beauty" name="category" type="radio" value="beauty"/>
+                            <label class="inline" for="category-beauty">Krása</label>
+                            
+                            <input id="category-regeneration" name="category" type="radio" value="regeneration"/>
+                            <label class="inline" for="category-regeneration">Regenerácia</label>
+                        </div>
+                        <div class="regeneration selectt">
+                            <input id="subcategory-wellness" name="subcategory" type="radio" value="wellness"/>
+                            <label class="inline" for="subcategory-wellness">Wellness</label>
+                            
+                            <input id="subcategory-massage" name="subcategory" type="radio" value="massage"/>
+                            <label class="inline" for="category-massage">Masáže</label>
+                            
+                            <input id="subcategory-sauna" name="subcategory" type="radio" value="sauna"/>
+                            <label class="inline" for="category-sauna">Sauny</label>
+                        </div>
+                        <div class="sport selectt">
+                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
+                            <label class="inline" for="subcategory-Podkategoria">Podkategoria</label>
+                            
+                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
+                            <label class="inline" for="category-Podkategoria">Podkategoria</label>
+                            
+                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
+                            <label class="inline" for="category-Podkategoria">Podkategoria</label>
+                        </div>
+                        <div class="beauty selectt">
+                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
+                            <label class="inline" for="subcategory-Podkategoria">Podkategoria</label>
+                            
+                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
+                            <label class="inline" for="category-Podkategoria">Podkategoria</label>
+                            
+                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
+                            <label class="inline" for="category-Podkategoria">Podkategoria</label>
+                        </div>
+                        <div id="input_data">
+                            <input autocomplete="off" type="text" name="title">
+                            <input autocomplete="off" type="text" name="text">
+                        </div>
+                        
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                $('input[name="category"]').click(function() {
+                                    var inputValue = $(this).attr("value");
+                                    var targetBox = $("." + inputValue);
+                                    $(".selectt").not(targetBox).hide();
+                                    $(targetBox).show();
+                                });
+                            });
+                        </script>
+                        
+                        <button type="submit" onclick=addclosePopup()>Pridať</button>
+                    </form>
+                    <script>
+                        
+                        function handleFormSubmit(event) {
+                            event.preventDefault();
+                            
+                            const data = new FormData(event.target);
+                            
+                            const formJSON = Object.fromEntries(data.entries());
+
+                        
+                            var results = JSON.stringify(formJSON);
+                            SaveDataToLocalStorage(formJSON);
+                            
+                            window.location.reload();
+                        }
+                        
+                        
+
+                            function SaveDataToLocalStorage(data)
+                            {
+                                var a = [];
+                                a = JSON.parse(localStorage.getItem('session')) || [];
+                                a.push(data);
+                                localStorage.setItem('session', JSON.stringify(a));
+                            }
+
+                            function createElements(obj) {
+                                
+                                const mainDiv = document.createElement('div');
+                                mainDiv.classList.add('video-preview');
+                                const img = document.createElement('img');
+                                img.classList.add('thumbnail');
+                                img.src='massage.jpeg';
+                                const title = document.createElement('h2');
+                                title.classList.add('blog-title');
+                                title.innerHTML = obj['title'];
+                                const text = document.createElement('p');
+                                text.classList.add('blog-text');
+                                text.innerHTML = obj['text'];
+                                mainDiv.appendChild(img);
+                                mainDiv.appendChild(title);
+                                mainDiv.appendChild(text);
+                               
+                                document.getElementById(obj['subcategory']).appendChild(mainDiv);
+                                
+                            }
+                            
+                            function deleteElements(){
+                                d_div.remove();
+                            }
+
+                        const form = document.querySelector('#add_form');
+                        form.addEventListener('submit', handleFormSubmit);
+                            
+                    </script>
+                    
+                    
+                </div>
                 <button type="submit" class="btn" onclick="openPopup()">
                     Prihlásiť sa
                 </button>
@@ -61,7 +184,7 @@
         </section>
 
     </div>
-    <div id="mid" style="margin: 12px">
+    <div id="mid">
         <section id="right_side">
             <div id="map"></div> 
             <script src="map_init.js"></script>
@@ -72,115 +195,17 @@
         <section id="left_side">
             <section id="wellness">
                 <h2>Wellness</h2>
-                <div class="video-preview">
-                    <img class="thumbnail" src="massage.jpeg">
-                    <p class="video-title">
-                        <h2>nejaky nazov spolocnosti</h2>
-                    </p>
-                    <p class="video-author">
-                        <h3>brno namesti svobody</h3>
-                    </p>
-                    <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
-                </div>
-    
-                <div class="video-preview">
-                    <img class="thumbnail" src="massage.jpeg">
-                    <p class="video-title">
-                        <h2>nejaky nazov spolocnosti</h2>
-                    </p>
-                    <p class="video-author">
-                        <h3>brno namesti svobody</h3>
-                    </p>
-                    <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
-                </div>
-                <div class="video-preview">
-                    <img class="thumbnail" src="massage.jpeg">
-                    <p class="video-title">
-                        <h2>nejaky nazov spolocnosti</h2>
-                    </p>
-                    <p class="video-author">
-                        <h3>brno namesti svobody</h3>
-                    </p>
-                    <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
-                </div>
-                <div class="video-preview">
-                    <img class="thumbnail" src="massage.jpeg">
-                    <p class="video-title">
-                        <h2>nejaky nazov spolocnosti</h2>
-                    </p>
-                    <p class="video-author">
-                        <h3>brno namesti svobody</h3>
-                    </p>
-                    <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
-                </div>
-                <div class="video-preview">
-                    <img class="thumbnail" src="massage.jpeg">
-                    <p class="video-title">
-                        <h2>nejaky nazov spolocnosti</h2>
-                    </p>
-                    <p class="video-author">
-                        <h3>brno namesti svobody</h3>
-                    </p>
-                    <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
-                </div>
+            
             </section>
 
             <section id="massage">
                 <h2>Masáže</h2>
-                <div class="video-preview">
-                    <img class="thumbnail" src="massage.jpeg">
-                    <p class="video-title">
-                        <h2>nejaky nazov spolocnosti</h2>
-                    </p>
-                    <p class="video-author">
-                        <h3>brno namesti svobody</h3>
-                    </p>
-                    <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
-                </div>
+                
             </section>
             <section id="sauna">
                 <h2>Sauny</h2>
-                <div class="video-preview">
-                    <img class="thumbnail" src="massage.jpeg">
-                    <p class="video-title">
-                        <h2>nejaky nazov spolocnosti</h2>
-                    </p>
-                    <p class="video-author">
-                        <h3>brno namesti svobody</h3>
-                    </p>
-                    <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
-                </div>
-                <div class="video-preview">
-                    <img class="thumbnail" src="massage.jpeg">
-                    <p class="video-title">
-                        <h2>nejaky nazov spolocnosti</h2>
-                    </p>
-                    <p class="video-author">
-                        <h3>brno namesti svobody</h3>
-                    </p>
-                    <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
-                </div>
-                <div class="video-preview">
-                    <img class="thumbnail" src="massage.jpeg">
-                    <p class="video-title">
-                        <h2>nejaky nazov spolocnosti</h2>
-                    </p>
-                    <p class="video-author">
-                        <h3>brno namesti svobody</h3>
-                    </p>
-                    <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
-                </div>
-                <div class="video-preview">
-                    <img class="thumbnail" src="massage.jpeg">
-                    <p class="video-title">
-                        <h2>nejaky nazov spolocnosti</h2>
-                    </p>
-                    <p class="video-author">
-                        <h3>brno namesti svobody</h3>
-                    </p>
-                    <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
-                </div>
             </section>
+        </section>
     <div id="bottom">
         <!-- nejaky list kontaktov-->
         <h2 style="margin: 5px">Kontaktujte nas</h2>
@@ -202,6 +227,16 @@ function closePopup(){
     bottom.classList.remove("blur_background");
 
 }
+
+let add_popup = document.getElementById("add_popup");
+function addopenPopup(){
+    add_popup.classList.add("open-popup");
+}
+function addclosePopup(){
+    add_popup.classList.remove("open-popup");
+}
+
+
 function mapChange(adresos){
     // premenna adresa sa prisposobi pre http request
     adresos.split(" ").join("%20");
@@ -227,6 +262,26 @@ function mapChange(adresos){
     }
 });
 }
+</script>
+<script>
+    var myData = JSON.parse(localStorage.getItem('session'));
+    console.log(myData);
+
+                            //var d_div = document.getElementById('.card');
+                            //deleteElements();
+
+    myData.forEach(obj => {
+        console.log(obj['subcategory']);
+        console.log(obj);
+        createElements(obj);
+    });
+
+
+    window.addEventListener("storage", handler);
+
+    function handler() {
+        location.reload();
+    }
 </script>
 </body>
 </html>
