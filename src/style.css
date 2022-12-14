@@ -257,7 +257,6 @@ button{
     margin-top: 4px;
   }
 
-<<<<<<< HEAD
 .container{
     width: 100%;
     height: 120vh;
@@ -369,7 +368,6 @@ button{
 .login_form .font2{
 	margin-top: 30px;
 }
-<<<<<<< HEAD
 
 .video-preview{
     width: 30%;
@@ -387,21 +385,4 @@ button{
     z-index: 0;
 }
 
-.video-preview button{
-    width: 50%;
-    margin-top: 5px;
-    padding: 5px 0;
-    background: #DEBA50;
-    color: rgb(0, 0, 0);
-    border: 0;
-    outline: none;
-    font-size: 18px;
-    border-radius: 4px;
-    cursor: pointer;
-    box-shadow: 0px 3px 2px black;
-    display: inline-block;
-}
-=======
-=======
->>>>>>> Update style.css
->>>>>>> 82548eb957157e43d05bcc94386da7019b1ddc9f
+
