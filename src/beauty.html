@@ -37,30 +37,30 @@
                             <label class="inline" for="subcategory-wellness">Wellness</label>
                             
                             <input id="subcategory-massage" name="subcategory" type="radio" value="massage"/>
-                            <label class="inline" for="category-massage">Masáže</label>
+                            <label class="inline" for="subcategory-massage">Masáže</label>
                             
                             <input id="subcategory-sauna" name="subcategory" type="radio" value="sauna"/>
-                            <label class="inline" for="category-sauna">Sauny</label>
+                            <label class="inline" for="subcategory-sauna">Sauny</label>
                         </div>
                         <div class="sport selectt">
-                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
-                            <label class="inline" for="subcategory-Podkategoria">Podkategoria</label>
+                            <input id="subcategory-letne_sporty" name="subcategory" type="radio" value="letne_sporty"/>
+                            <label class="inline" for="subcategory-letne_sporty">Letné športy</label>
                             
-                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
-                            <label class="inline" for="category-Podkategoria">Podkategoria</label>
+                            <input id="subcategory-zimne_sporty" name="subcategory" type="radio" value="zimne_sporty"/>
+                            <label class="inline" for="subcategory-zimne_sporty">Zimné športy</label>
                             
-                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
-                            <label class="inline" for="category-Podkategoria">Podkategoria</label>
+                            <input id="subcategory-vodne_sporty" name="subcategory" type="radio" value="vodne_sporty"/>
+                            <label class="inline" for="subcategory-vodne_sporty">Vodné športy</label>
                         </div>
                         <div class="beauty selectt">
-                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
-                            <label class="inline" for="subcategory-Podkategoria">Podkategoria</label>
+                            <input id="subcategory-barber" name="subcategory" type="radio" value="barber"/>
+                            <label class="inline" for="subcategory-barber">Holičstva</label>
                             
-                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
-                            <label class="inline" for="category-Podkategoria">Podkategoria</label>
+                            <input id="subcategory-nechty" name="subcategory" type="radio" value="nechty"/>
+                            <label class="inline" for="subcategory-nechty">Starostlivosť o nechty</label>
                             
-                            <input id="subcategory-Podkategoria" name="subcategory" type="radio" value="Podkategoria"/>
-                            <label class="inline" for="category-Podkategoria">Podkategoria</label>
+                            <input id="subcategory-solarko" name="subcategory" type="radio" value="solarko"/>
+                            <label class="inline" for="subcategory-solarko">Solaria</label>
                         </div>
                         <div id="input_data">
                             <input autocomplete="off" type="text" name="title">
@@ -165,14 +165,17 @@
                 <li>
                     <a href="sport.html">Šport</a>
                     <ul class="dropdown">
+                        <li><a href="sport.html#zimne_sporty">Zimné športy</a></li>
+                        <li><a href="sport.html#letne_sporty">Letné športy</a></li>
+                        <li><a href="sport.html#vodne_sporty">Vodné športy</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="beauty.html">Krása</a>
                     <ul class="dropdown">
-                        <li><a href="">Podkategoria</a></li>
-                        <li><a href="">Podkategoria</a></li>
-                        <li><a href="">Podkategoria</a></li>
+                        <li><a href="sport.html#barber">Holičstva</a></li>
+                        <li><a href="sport.html#nechty">Starostlivosť o nechty</a></li>
+                        <li><a href="sport.html#solarko">Solaria</a></li>
                     </ul>
                 </li>
                 <li>
@@ -196,13 +199,14 @@
             </script>
         </section>
         <section id="left_side">
-            <section id="wellness">
+            <section id="barber">
+                <h2>Holičstva</h2>
             </section>
-            <section id="massage">
-                <h2>Masáže</h2>
+            <section id="nechty">
+                <h2>Starostlivosť o nechty</h2>
             </section>
-            <section id="sauna">
-                <h2>Sauny</h2>
+            <section id="solarko">
+                <h2>Solaria</h2>
             </section>
         </section>
     </div>
@@ -230,6 +234,32 @@ function addopenPopup(){
 }
 function addclosePopup(){
     add_popup.classList.remove("open-popup");
+}
+
+function mapChange(adresos){
+    // premenna adresa sa prisposobi pre http request
+    adresos.split(" ").join("%20");
+    const Http = new XMLHttpRequest();
+    const url='https://maps.googleapis.com/maps/api/geocode/json?address=' + adresos + '&key=AIzaSyA_jFvlb3oQ-FiBNlzbc5jmDuQsB0IhKJc';
+
+    getJSON(url,
+    function(err, data) {
+    if (err !== null) {
+        alert('Something went wrong: ' + err);
+    } else {
+        var latitude =  Number(data.results[0].geometry.location.lat);
+        var length = Number(data.results[0].geometry.location.lng);
+        var options = {
+            zoom:14,
+            center:{lat:latitude,lng:length}
+        }
+        var map = new google.maps.Map(document.getElementById('map'), options)
+        var marker = new google.maps.Marker({
+            position: {lat:latitude,lng:length},
+            map: map
+        });
+    }
+});
 }
 </script>
 <script>
