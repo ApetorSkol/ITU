@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
     <div id="top">
         <section id="bar">
@@ -26,7 +27,9 @@
                         <div class="font font2">Heslo</div>
                         <input type="password" name="password">
                     </form>
-                    <button type="submit" onclick="closePopup()">Prihlasiť sa</button>
+                    <form action="profil.html">
+                        <button type="submit" onclick=closePopup()>Prihlásiť sa</button>
+                    </form>
                 </div>
             </div>
             <script src="valid.js"></script>
@@ -62,11 +65,12 @@
     </div>
     <div id="mid" style="margin: 12px">
         <section id="right_side">
-            <div id="map"></div> 
-            <script src="map_init.js"></script>
-            <script async
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_jFvlb3oQ-FiBNlzbc5jmDuQsB0IhKJc&callback=initMap">
-            </script>
+            <div  id="map">
+                <script src="map_init.js"></script>
+                <script async
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_jFvlb3oQ-FiBNlzbc5jmDuQsB0IhKJc&callback=initMap">
+                </script>
+            </div> 
         </section>
         <section id="left_side">
             <div class="video-preview">

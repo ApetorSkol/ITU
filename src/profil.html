@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="top">
+        <section id="bar">
+            <h1 id="title" >
+                <a href="index.html">Bambus</a> <!-- plus nejaka ikonka  -->
+            </h1>
+            <div class="container">
+                <button type="submit" class="btn" onclick="openPopup()">
+                    Odhlásiť sa
+                </button>
+                <div class="popup" id="popup">
+                    <h2>Boli ste odhlásený</h2>
+                    <form action="index.html">
+                        <button type="submit" onclick=closePopup()>Pokračovať</button>
+                    </form>
+                </div>
+            </div>
+            <script src="valid.js"></script>
+        </section>
+
+        <section id="menu">
+            <ul>
+                <li><a href="index.html">Domov</a></li>
+                <li>
+                    <a href="sport.html">Šport</a>
+                    <ul class="dropdown">
+                        <li><a href="">Podkategoria</a></li>
+                        <li><a href="">Podkategoria</a></li>
+                        <li><a href="">Podkategoria</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="beauty.html">Krása</a>
+                    <ul class="dropdown">
+                        <li><a href="">Podkategoria</a></li>
+                        <li><a href="">Podkategoria</a></li>
+                        <li><a href="">Podkategoria</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="regeneration.html">Regenerácia</a>
+                    <ul class="dropdown">
+                        <li><a href="regeneration.html#wellness">Wellness</a></li>
+                        <li><a href="regeneration.html#massage">Masáže</a></li>
+                        <li><a href="regeneration.html#sauna">Sauny</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+    <div id="mid">
+        <section id="right_side">
+            <div class="">
+                <h1 class="">Údaje</h1>
+                <div class="">
+                    
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="">
+                                <h3>Full Name</h3>
+                            </div>
+                            <div class="">
+                                Michal Fric
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="Vseobecny udaj">
+                                <h3>Email</h3>
+                            </div>
+                            <div class="">
+                                abc@gmail.com
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="Vseobecny_udaj">
+                                <h3>Phone</h3>
+                            </div>
+                            <div class="">
+                                0911 111 111
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="Vseobecny udaj">
+                                <h3>Adresa</h3>
+                            </div>
+                            <div class="">
+                                Božetěchova 1/2, 612 00 Brno-Královo Pole
+                            </div>
+                        </div>
+                        <div class="">
+                            <h1 class="">Rezervacie</h1>
+                            <hr>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="">
+                                        <h5>Meno rezervacie</h5>
+                                    </div>
+                                    <div class="">
+                                        Info o rezervacii
+                                    </div>
+                                    <div class="">
+                                        <h5>Meno rezervacie</h5>
+                                    </div>
+                                    <div class="">
+                                        Info o rezervacii
+                                    </div>
+                                    <div class="">
+                                        <h5>Meno rezervacie</h5>
+                                    </div>
+                                    <div class="">
+                                        Info o rezervacii
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="left_side">
+            <div class="row">
+                <div class="card text-center sidebar">
+                    <div class="card-body">
+                        <img src="image.jpg" class="rounded-circle" width="250">
+                        <div class="nastavenia">
+                            <hr>
+                            <a href="">Upraviť profil</a>
+                            <a href="">Upraviť rezervácie</a>
+                            <a href="">Registrovať pobočku</a>
+                            <a href="">Podpora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <div class = "cont">
+            <div class="main">
+                
+                
+            </div>
+        </div>
+
+    </div>
+    
+
+    <div id="bottom">
+        <!-- nejaky list kontaktov-->
+        <h2 style="margin: 5px">Kontaktujte nas</h2>
+        <p style="margin: 5px">CZ tel. číslo: +420 111 111 111</p>
+        <p style="margin: 5px">SK tel. číslo: +421 222 222 222</p>
+        <p style="margin: 5px"> email: info@bambus.cz</p>
+        <p style="margin: 5px">adresa: Božetěchova 1/2, 612 00 Brno-Královo Pole</p>
+    </div>
+
+<script>
+let popup = document.getElementById("popup");
+function openPopup(){
+    popup.classList.add("open-popup");
+    
+}
+function closePopup(){
+    popup.classList.remove("open-popup");
+}
+</script>
+</body>
+</html>
