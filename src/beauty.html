@@ -40,9 +40,6 @@
                 <li>
                     <a href="sport.html">Šport</a>
                     <ul class="dropdown">
-                        <li><a href="">Podkategoria</a></li>
-                        <li><a href="">Podkategoria</a></li>
-                        <li><a href="">Podkategoria</a></li>
                     </ul>
                 </li>
                 <li>
@@ -65,15 +62,34 @@
         </section>
 
     </div>
-    <div id="mid">
-        <section id="wellness">
-            <h2>Wellness</h2>
+    <div id="mid" style="margin: 12px">
+        <section id="right_side">
+            <div id="map"></div> 
+            <script src="map_init.js"></script>
+            <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_jFvlb3oQ-FiBNlzbc5jmDuQsB0IhKJc&callback=initMap">
+            </script>
         </section>
-        <section id="massage">
-            <h2>Masáže</h2>
-        </section>
-        <section id="sauna">
-            <h2>Sauny</h2>
+        <section id="left_side">
+            <section id="wellness">
+                <h2>Wellness</h2>
+                <div class="video-preview">
+                    <img class="thumbnail" src="massage.jpeg">
+                    <p class="video-title">
+                        <h2>nejaky nazov spolocnosti</h2>
+                    </p>
+                    <p class="video-author">
+                        <h3>brno namesti svobody</h3>
+                    </p>
+                    <button type="submit" onclick=mapChange("brno-kralovo-pol")>Zobrazit na mape</button>
+                </div>
+            </section>
+            <section id="massage">
+                <h2>Masáže</h2>
+            </section>
+            <section id="sauna">
+                <h2>Sauny</h2>
+            </section>
         </section>
     </div>
     <div id="bottom">

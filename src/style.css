@@ -113,14 +113,14 @@ button{
     padding-top: 82px;
 }
 #right_side{
-    height: 800px;               /*random vyska aby som videl ako to bude vyzerat*/
+    height: 100vh;               /*random vyska aby som videl ako to bude vyzerat*/
     width: 50%;
     float: right;
     background-color: white;     /*random pozadie aby som videl ako to bude vyzerat*/
 }
 
 #left_side{
-    height: 800px;               /*random vyska aby som videl ako to bude vyzerat*/
+    height: 100vh;               /*random vyska aby som videl ako to bude vyzerat*/
     width: 50%;
     background-color: white;    /*random pozadie aby som videl ako to bude vyzerat*/
 }
@@ -128,7 +128,9 @@ button{
 
 #bottom{
     background-color: #DEBA50;      /*random pozadie aby som videl ako to bude vyzerat*/
-    height: 300px;                /*random vyska aby som videl ako to bude vyzerat*/
+    height: 200px;                     /*random vyska aby som videl ako to bude vyzerat*/
+    width: 100%;
+    bottom: 0;
     /*filter: blur(10px); */
 }
 
@@ -138,16 +140,16 @@ button{
 
 /*              REGENERATION            */
 
-#mid>#wellness{
-    margin-left: 300px;
-    height: 500px;
+#mid>#left_side>#wellness{
+    margin-left: 0px;
     padding-top: 100px;
 }
 
-#mid>#wellness>h2{
+#mid>#left_side>#wellness>h2{
     font-size: 50px;
     padding-left: 30px;
     padding-top: 20px;
+    margin-left: 300px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     background-image: url("wellness.jpeg");
@@ -158,16 +160,16 @@ button{
     width: 400px;
 }
 
-#mid>#massage{
-    margin-left: 300px;
-    height: 500px;
+#mid>#left_side>#massage{
+    margin-left: 0;
     padding-top: 100px;
     
 }
-#mid>#massage>h2{
+#mid>#left_side>#massage>h2{
     font-size: 50px;
     padding-left: 30px;
     padding-top: 20px;
+    margin-left: 300px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     background-image: url("massage.jpeg");
@@ -178,17 +180,17 @@ button{
     border-radius: 5px;
     
 }
-#mid>#sauna{
-    margin-left: 300px;
-    height: 500px;
+#mid>#left_side>#sauna{
+    margin-left: 0;
     padding-top: 100px;
 }
 
-#mid>#sauna>h2{
+#mid>#left_side>#sauna>h2{
     
     font-size: 50px;
     padding-left: 30px;
     padding-top: 20px;
+    margin-left: 300px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     background-image: url("sauna.jpeg");
