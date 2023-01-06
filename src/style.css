@@ -43,7 +43,7 @@ button{
     height: 50px;
     display: flex;
     align-items:center;
-    background-image: url("bamboo_bg.jpg");
+    background-image: url("Pictures/bamboo_bg.jpg");
     
     
 }
@@ -154,7 +154,7 @@ button{
     padding-top: 20px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background-image: url("barber.jpg");
+    background-image: url("Pictures/barber.jpg");
     background-repeat: no-repeat;
     background-size: 500px;
     border-radius: 5px;
@@ -175,7 +175,7 @@ button{
     padding-top: 20px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background-image: url("nechty.jpg");
+    background-image: url("Pictures/nechty.jpg");
     background-repeat: no-repeat;
     background-size: 500px;
     border-radius: 5px;
@@ -197,7 +197,7 @@ button{
     padding-top: 20px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background-image: url("solarko.jpg");
+    background-image: url("Pictures/solarko.jpg");
     background-repeat: no-repeat;
     background-size: 500px;
     border-radius: 5px;
@@ -219,7 +219,7 @@ button{
     padding-top: 20px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background-image: url("wellness.jpeg");
+    background-image: url("Pictures/wellness.jpeg");
     background-repeat: no-repeat;
     background-size: 500px;
     border-radius: 5px;
@@ -239,7 +239,7 @@ button{
     padding-top: 20px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background-image: url("zima.JPG");
+    background-image: url("Pictures/zima.JPG");
     background-repeat: no-repeat;
     background-size: 500px;
     border-radius: 5px;
@@ -260,7 +260,7 @@ button{
     padding-top: 20px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background-image: url("tenis.jpg");
+    background-image: url("Pictures/tenis.jpg");
     background-repeat: no-repeat;
     background-size: 500px;
     border-radius: 5px;
@@ -281,7 +281,7 @@ button{
     padding-top: 20px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background-image: url("plavanie.jpg");
+    background-image: url("Pictures/plavanie.jpg");
     background-repeat: no-repeat;
     background-size: 500px;
     border-radius: 5px;
@@ -302,7 +302,7 @@ button{
     padding-top: 20px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background-image: url("massage.jpeg");
+    background-image: url("Pictures/massage.jpeg");
     background-repeat: no-repeat;
     background-size: 500px;
     height:70px;
@@ -323,7 +323,7 @@ button{
     padding-top: 20px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background-image: url("sauna.jpeg");
+    background-image: url("Pictures/sauna.jpeg");
     background-repeat: no-repeat;
     background-size: 500px;
     height:70px;
@@ -625,7 +625,7 @@ button{
     text-align: center;
     font-size: 30px;
     color: #fff833;
-    background: url(football.jpg);
+    background: url(Pictures/football.jpg);
     background-size: cover;
     border: 0.1em solid #ecff21;
     border-radius: 50%;
@@ -647,7 +647,7 @@ button{
     text-align: center;
     font-size: 30px;
     color: #fff833;
-    background: url(krasa.jpg);
+    background: url(Pictures/krasa.jpg);
     background-size: cover;
     border: 0.1em solid #ecff21;
     border-radius: 50%;
@@ -667,7 +667,7 @@ button{
     box-shadow: 0 0 0 rgba(255, 30, 30, 0.1), inset 0 0 0 rgba(0,0,0,0.1);
     font-size: 30px;
     color: #fff833;
-    background: url(listy.jpg);
+    background: url(Pictures/listy.jpg);
     background-size: cover;
     border: 0.1em solid #ecff21;
     border-radius: 50%;
