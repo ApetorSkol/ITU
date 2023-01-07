@@ -2,4 +2,5 @@ na spustenie vam treba mat nainstalovany python a v ramci python mat stiahnuty F
 
 
 spustenie
+
 python main.py
