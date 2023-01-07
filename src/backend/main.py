@@ -10,7 +10,8 @@ def parse_request():
     f = open("demofile3.txt", "w")
     f.write("Woops! I have deleted the content!")
     f.close()
-    return "a"
+    f = open("demofile3.txt", "r")
+    return f.read()
 
 
 if __name__ == "__main__":  # create api interface if this script is called
