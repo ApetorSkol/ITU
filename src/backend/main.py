@@ -1,7 +1,9 @@
-from flask import Flask, Request   # creating flask API
+from flask import Flask, Request, make_response   # creating flask API
+from flask_cors import CORS
 
 # create instance of class
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/ping', methods=['GET', 'POST'])
