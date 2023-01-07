@@ -7,6 +7,9 @@ app = Flask(__name__)
 @app.route('/ping', methods=['GET', 'POST'])
 def parse_request():
     #a = Request.get_data()
+    f = open("demofile3.txt", "w")
+    f.write("Woops! I have deleted the content!")
+    f.close()
     return "a"
 
 
