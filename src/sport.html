@@ -20,9 +20,11 @@
                     Pridať svoj podnik
                 </button>
                 <div class="popup" id="add_popup">
+                    <button type="button" id="close_btn" onclick=addclosePopup()> X </button>
                     <h2>Pridať svoj podnik</h2>
                     <form id="add_form">
                         <div class="input-category">
+                            <div class="font" style="text-decoration:underline" ;>Kategória</div>
                             <input id="category-sport" name="category" type="radio" value="sport"/>
                             <label class="inline" for="category-sport">Šport</label>
                             
@@ -33,6 +35,7 @@
                             <label class="inline" for="category-regeneration">Regenerácia</label>
                         </div>
                         <div class="regeneration selectt">
+                            <div class="font" style="text-decoration:underline ;">Podkategória</div>
                             <input id="subcategory-wellness" name="subcategory" type="radio" value="wellness"/>
                             <label class="inline" for="subcategory-wellness">Wellness</label>
                             
@@ -43,6 +46,7 @@
                             <label class="inline" for="subcategory-sauna">Sauny</label>
                         </div>
                         <div class="sport selectt">
+                            <div class="font" style="text-decoration:underline ;">Podkategória</div>
                             <input id="subcategory-letne_sporty" name="subcategory" type="radio" value="letne_sporty"/>
                             <label class="inline" for="subcategory-letne_sporty">Letné športy</label>
                             
@@ -53,6 +57,7 @@
                             <label class="inline" for="subcategory-vodne_sporty">Vodné športy</label>
                         </div>
                         <div class="beauty selectt">
+                            <div class="font" style="text-decoration:underline ;">Podkategória</div>
                             <input id="subcategory-barber" name="subcategory" type="radio" value="barber"/>
                             <label class="inline" for="subcategory-barber">Holičstva</label>
                             
@@ -63,8 +68,14 @@
                             <label class="inline" for="subcategory-solarko">Solaria</label>
                         </div>
                         <div id="input_data">
+                            <div class="font" style="text-decoration:underline ;">Názov podniku</div>
                             <input autocomplete="off" type="text" name="title">
+                            <div class="font" style="text-decoration:underline ;">Popis podniku</div>
                             <input autocomplete="off" type="text" name="text">
+                            <div class="font" style="text-decoration:underline ;">Adresa podniku</div>
+                            <input autocomplete="off" type="text" name="adress">
+                            <div class="font" style="text-decoration:underline ;">Email</div>
+                            <input autocomplete="off" type="text" name="email">
                         </div>
                         
                         <script type="text/javascript">
@@ -112,19 +123,27 @@
                                 mainDiv.classList.add('video-preview');
                                 const img = document.createElement('img');
                                 img.classList.add('thumbnail');
-                                img.src='Pictures/massage.jpeg';
+                                img.src='massage.jpeg';
                                 const title = document.createElement('h2');
                                 title.classList.add('blog-title');
                                 title.innerHTML = obj['title'];
                                 const text = document.createElement('p');
                                 text.classList.add('blog-text');
                                 text.innerHTML = obj['text'];
+                                const adrs = document.createElement('p');
+                                adrs.classList.add('blog-text');
+                                adrs.innerHTML = obj['adress'];
+                                const buttonn = document.createElement('button');
+                                buttonn.type='submit';
+                                buttonn.setAttribute("onclick", "mapChange("+"'"+obj['adress']+"'"+")");
+                                var t = document.createTextNode("Zobraziť na mape");
+                                buttonn.appendChild(t);
                                 mainDiv.appendChild(img);
                                 mainDiv.appendChild(title);
                                 mainDiv.appendChild(text);
-                               
+                                mainDiv.appendChild(adrs);
+                                mainDiv.appendChild(buttonn);
                                 document.getElementById(obj['subcategory']).appendChild(mainDiv);
-                                
                             }
                             
                             function deleteElements(){
@@ -279,7 +298,10 @@ function mapChange(adresos){
     myData.forEach(obj => {
         console.log(obj['subcategory']);
         console.log(obj);
-        createElements(obj);
+        if(obj['category'] == "sport"){
+            createElements(obj);
+        }
+
     });
 
 
