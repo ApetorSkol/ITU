@@ -14,15 +14,18 @@
         "adresa": "Partizanska osemstotri Poprad",
         "datum": "14.01.2022",
         "cas": "8:00"
-    }]
+    }],
+    "pobocky": [{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om"},{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om"}]
 },{
     "meno": "Mato",
     "priezvisko": "Slivka",
     "email": "matsli@gmail.com",
-    "phoneNumbers": "0922 222 222"
+    "phoneNumbers": "0922 222 222",
+    "pobocky": [{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om"},{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om"}]
 },{
     "meno": "Daniel",
     "priezvisko": "Zalezak",
     "email": "danzal@gmail.com",
-    "phoneNumbers": "0933 333 333"
+    "phoneNumbers": "0933 333 333",
+    "pobocky": [{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om"},{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om"}]
 }]
