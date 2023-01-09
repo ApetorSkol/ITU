@@ -6,10 +6,30 @@ import json
 app = Flask(__name__)
 CORS(app)
 
+
+@app.route('/pridat_pobocku', methods=['GET', 'POST'])
+def pridat_pobocku():
+    f = open("user.json", "r")
+    users = json.loads(f.read())
+    for user in users:
+        if user["email"] == request.get_data().decode("utf-8"):
+            return 200
+    return 400
+
+
+@app.route('/pobocky', methods=['GET', 'POST'])
+def pobocky():
+    f = open("user.json", "r")
+    users = json.loads(f.read())
+    output = []
+    for user in users:
+        output = output + user["pobocky"]
+    return output
+
+
 @app.route('/prihlasenie', methods=['GET', 'POST'])
 def prihlasenie():
     f = open("user.json", "r")
-    print(f)
     users = json.loads(f.read())
     for user in users:
         if user["email"] == request.get_data().decode("utf-8"):
@@ -28,3 +48,4 @@ def parse_request():
 
 if __name__ == "__main__":  # create api interface if this script is called
     app.run(host='0.0.0.0', port=105)
+    pobocky()
