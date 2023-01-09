@@ -1,0 +1,28 @@
+[{
+    "meno": "Michal",
+    "priezvisko": "Fric",
+    "email": "micfri@gmail.com",
+    "phoneNumbers": "0911 111 111",
+    "rezervacie": [{
+        "nazov-title": "Nechty u Peška",
+        "adresa": "Partizanska petstotri Poprad",
+        "datum": "12.01.2022",
+        "cas": "12:00"
+    },
+    {
+        "nazov-title": "Fitko u Peška",
+        "adresa": "Partizanska osemstotri Poprad",
+        "datum": "14.01.2022",
+        "cas": "8:00"
+    }]
+},{
+    "meno": "Mato",
+    "priezvisko": "Slivka",
+    "email": "matsli@gmail.com",
+    "phoneNumbers": "0922 222 222"
+},{
+    "meno": "Daniel",
+    "priezvisko": "Zalezak",
+    "email": "danzal@gmail.com",
+    "phoneNumbers": "0933 333 333"
+}]
