@@ -8,14 +8,25 @@
     <title>Document</title>
 </head>
 
-<body>
+<body  onload="checkProfile()">
+    <script type="module">
+        "use strict";
+        import users from './user.json' assert {type: 'json'};
+
+        
+        for(let i = 0; i < users.length; i++){
+            localStorage.setItem("correct_email" + i, users[i]["email"]);
+        }
+
+    </script>
+    
     <div id="top">
         <section id="bar">
             <h1 id="title" >
                 <a href="index.html">Bambus</a> <!-- plus nejaka ikonka  -->
             </h1>
             <div class="container">
-                <button type="submit" class="btn" onclick="openPopup()">
+                <button type="submit" id="btn" onclick="openPopup()">
                     Odhlásiť sa
                 </button>
                 <div class="popup" id="popup">
@@ -25,7 +36,6 @@
                     </form>
                 </div>
             </div>
-            <script src="valid.js"></script>
         </section>
 
         <section id="menu">
@@ -70,61 +80,68 @@
                     
                     <div class="card-body">
                         <div class="row">
-                            <div class="">
+                            <div >
                                 <h3>Full Name</h3>
                             </div>
-                            <div class="">
-                                Michal Fric
+                            <div id="Meno">
+
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="Vseobecny udaj">
+                            <div >
                                 <h3>Email</h3>
                             </div>
-                            <div class="">
-                                abc@gmail.com
+                            <div id="email">
+
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="Vseobecny_udaj">
+                            <div >
                                 <h3>Phone</h3>
                             </div>
-                            <div class="">
-                                0911 111 111
+                            <div id="tel_cislo">
+
                             </div>
                         </div>
                         <div class="row">
-                            <div class="Vseobecny udaj">
+                            <div >
                                 <h3>Adresa</h3>
                             </div>
-                            <div class="">
-                                Božetěchova 1/2, 612 00 Brno-Královo Pole
+                            <div id="bydlisko">
+
                             </div>
                         </div>
-                        <div class="">
-                            <h1 class="">Rezervacie</h1>
+                        <div class="Rezervacie">
+                            <h1 class="Rezervacie-title">Rezervacie</h1>
                             <hr>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="">
-                                        <h5>Meno rezervacie</h5>
+
+                                    <h3 id="first_res">
+
+                                    </h3>
+                                    <div id="first_info">
+
                                     </div>
-                                    <div class="">
-                                        Info o rezervacii
+                                    <h3 id="second_res">
+
+                                    </h3>
+                                    <div id="second_info">
+
                                     </div>
-                                    <div class="">
-                                        <h5>Meno rezervacie</h5>
+                                    <h3 id="third_res">
+
+                                    </h3>
+                                    <div id="third_info">
+
                                     </div>
-                                    <div class="">
-                                        Info o rezervacii
-                                    </div>
-                                    <div class="">
-                                        <h5>Meno rezervacie</h5>
-                                    </div>
-                                    <div class="">
-                                        Info o rezervacii
+                                    <h3 id="fourth_res">
+
+                                    </h3>
+                                    <div id="fourth_info">
+
                                     </div>
                                 </div>
                             </div>
@@ -171,14 +188,90 @@
     </div>
 
 <script>
+
 let popup = document.getElementById("popup");
 function openPopup(){
     popup.classList.add("open-popup");
+    var tlacidlo = document.getElementById("btn");
+    localStorage.removeItem("flag");
+    tlacidlo.onclick = logout;
     
 }
 function closePopup(){
     popup.classList.remove("open-popup");
 }
+
+function checkProfile(){  
+    var uzivatel = localStorage.getItem('flag');
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            var uzivatelia = JSON.parse(xhttp.responseText);
+            
+            console.log(uzivatelia);
+
+            var meno_priezvisko = document.getElementById("Meno");
+            meno_priezvisko.innerHTML = uzivatelia["meno"] + " " +uzivatelia["priezvisko"];
+
+            var meno_priezvisko = document.getElementById("email");
+            meno_priezvisko.innerHTML = uzivatelia["email"];
+
+            var meno_priezvisko = document.getElementById("tel_cislo");
+            meno_priezvisko.innerHTML = uzivatelia["phoneNumbers"];
+
+            var meno_priezvisko = document.getElementById("bydlisko");
+            meno_priezvisko.innerHTML = " ";
+
+            for(let i = 0; i < uzivatelia["rezervacie"].length; i++){
+                var reserv = JSON.stringify(uzivatelia["rezervacie"][i]["nazov-title"]);
+                var inform = JSON.stringify(uzivatelia["rezervacie"][i]["adresa"]) + "\n" +JSON.stringify(uzivatelia["rezervacie"][i]["datum"]);
+                reservation = reserv.replaceAll('"', '');
+                information = inform.replaceAll('"', '');
+                if (i == 0){
+                    var res = document.getElementById("first_res");
+                    var info = document.getElementById("first_info");
+                    
+                    res.innerHTML = reservation;
+                    info.innerHTML = information;
+                }
+                if (i == 1){
+                    var res = document.getElementById("second_res");
+                    var info = document.getElementById("second_info");
+                    
+                    res.innerHTML = reservation;
+                    info.innerHTML = information;
+                }
+                if (i == 2){
+                    var res = document.getElementById("third_res");
+                    var info = document.getElementById("third_info");
+                    
+                    res.innerHTML = reservation;
+                    info.innerHTML = information;
+                }
+                if (i == 3){
+                    var res = document.getElementById("fourth_res");
+                    var info = document.getElementById("fourth_info");
+                    
+                    res.innerHTML = reservation;
+                    info.innerHTML = information;
+                }
+
+
+            }
+        }
+    };
+    xhttp.open("POST", "https://itucko-5mig.onrender.com/prihlasenie", true);
+    xhttp.send(uzivatel);
+
+    
+
+
+}
+setInterval(checkProfile, 5000); // Send request every 1000 milliseconds (1 second)
 </script>
+
+
 </body>
 </html>
