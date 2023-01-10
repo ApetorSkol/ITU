@@ -13,6 +13,11 @@
     <div id="top">
         <div class="popup" id="popup">
             <script>
+                function logout(){
+                    localStorage.removeItem("flag");
+                    var tlacidlo = document.getElementById("btn");
+                    tlacidlo.innerHTML = "Prihlásiť sa";
+                }
                 function change(){
                     var user_name = document.form.meno.value;
                     var user_surname = document.form.priezvisko.value;
@@ -49,7 +54,7 @@
                 <a href="index.html">Bambus</a> <!-- plus nejaka ikonka  -->
             </h1>
             <div class="container">
-                <button type="submit" id="btn" class = "btn" onclick="openPopup()">
+                <button type="submit" id="btn" class = "btn" onclick="logout()">
                     Odhlásiť sa
                 </button>
                 <div class="popup" id="popup">
