@@ -8,6 +8,20 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/pobocky_user', methods=['GET', 'POST'])
+def pobocky_user():
+    f = open("user.json", "r")
+    users = json.loads(f.read())
+    output = []
+    for user in users:
+        if user["email"] != request.get_data().decode("utf-8"):
+            continue
+        output = user["pobocky"]
+        print("uspesne som dokoncil /pobocky_user")
+        return output
+    return "nie"
+
+
 @app.route('/emaily', methods=['GET', 'POST'])
 def emaily():
     f = open("user.json", "r")
