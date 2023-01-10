@@ -8,9 +8,42 @@
     <title>Document</title>
 </head>
 
-<body  >
+<body  onload="checkProfile();downloadMojePobocky();">
 
     <div id="top">
+        <div class="popup" id="popup">
+            <script>
+                function change(){
+                    var user_name = document.form.meno.value;
+                    var user_surname = document.form.priezvisko.value;
+                    var user_email = document.form.email.value;
+                    var user_number = document.form.telcislo.value;
+                    var udaje = new Object();
+                    udaje.meno = user_name;
+                    udaje.priezvisko = user_surname;
+                    udaje.email = user_email;
+                    udaje.phoneNumbers = user_number;
+                    console.log(udaje);
+                    var udaje_json= JSON.stringify(udaje);
+                    checkProfile(udaje, true);
+                }
+            </script>
+            <button type="button" id="x_btn" onclick=closePopup()> X </button>
+            <h2>Zmeniť údaje</h2>
+            <form class="login_form" action="home.html" method="post" name="form" onsubmit="saveEmailAddress(); return validated();">
+                <div class="font">Meno</div>
+                <input autocomplete="off" type="text" name="meno">
+                <div class="font">Priezvisko</div>
+                <input name="priezvisko">
+                <div class="font">email</div>
+                <input name="email">
+                <div class="font">Telefónne číslo</div>
+                <input name="telcislo">
+            </form>
+            <form action="profil.html">
+                <button type="button" onclick=change()>Uložiť</button>
+            </form>
+        </div>
         <section id="bar">
             <h1 id="title" >
                 <a href="index.html">Bambus</a> <!-- plus nejaka ikonka  -->
@@ -95,14 +128,6 @@
 
                             </div>
                         </div>
-                        <div class="row">
-                            <div >
-                                <h3>Adresa</h3>
-                            </div>
-                            <div id="bydlisko">
-
-                            </div>
-                        </div>
                         <div class="Rezervacie">
                             <h1 class="Rezervacie-title">Rezervacie</h1>
                             <hr>
@@ -136,6 +161,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="pobocky">
+                            <h1 class="Rezervacie-title">Podniky</h1>
+                            <div id="moje_pobocky"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,11 +175,13 @@
                     <div class="card-body">
                         <img src="Pictures/image.jpg" class="rounded-circle" width="250">
                         <div class="nastavenia">
+                            <button type="button" class="profilove_tlac" onclick="openPopup()">Upraviť profil</button>         
+                            <hr>              
+                            <button class="profilove_tlac">Upraviť rezervácie</Button>
                             <hr>
-                            <a href="">Upraviť profil</a>
-                            <a href="">Upraviť rezervácie</a>
-                            <a href="">Registrovať pobočku</a>
-                            <a href="">Podpora</a>
+                            <button class="profilove_tlac">Registrovať pobočku</Button>
+                            <hr>
+                            <button class="profilove_tlac">Podpora</Button>
                         </div>
                     </div>
                 </div>
@@ -202,29 +233,16 @@ function addclosePopup(){
     
 }
 
-function checkProfile(){  
+function checkProfile(udaje, changed){  
     var uzivatel = localStorage.getItem('flag');
-
     var xhttp = new XMLHttpRequest();
+    var xhttp2 = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             
             var uzivatelia = JSON.parse(xhttp.responseText);
             
             console.log(uzivatelia);
-
-            var meno_priezvisko = document.getElementById("Meno");
-            meno_priezvisko.innerHTML = uzivatelia["meno"] + " " +uzivatelia["priezvisko"];
-
-            var meno_priezvisko = document.getElementById("email");
-            meno_priezvisko.innerHTML = uzivatelia["email"];
-
-            var meno_priezvisko = document.getElementById("tel_cislo");
-            meno_priezvisko.innerHTML = uzivatelia["phoneNumbers"];
-
-            var meno_priezvisko = document.getElementById("bydlisko");
-            meno_priezvisko.innerHTML = " ";
-
             for(let i = 0; i < uzivatelia["rezervacie"].length; i++){
                 var reserv = JSON.stringify(uzivatelia["rezervacie"][i]["nazov-title"]);
                 var inform = JSON.stringify(uzivatelia["rezervacie"][i]["adresa"]) + "\n" +JSON.stringify(uzivatelia["rezervacie"][i]["datum"]);
@@ -261,6 +279,23 @@ function checkProfile(){
 
 
             }
+            if(changed == true){
+                uzivatelia = udaje;
+            }
+            var meno_priezvisko = document.getElementById("Meno");
+            meno_priezvisko.innerHTML = uzivatelia["meno"] + " " +uzivatelia["priezvisko"];
+
+            var meno_priezvisko = document.getElementById("email");
+            meno_priezvisko.innerHTML = uzivatelia["email"];
+
+            var meno_priezvisko = document.getElementById("tel_cislo");
+            meno_priezvisko.innerHTML = uzivatelia["phoneNumbers"];
+
+
+
+             var final_uzivatelia = JSON.stringify(uzivatelia);
+            xhttp2.open("POST", "https://itucko-5mig.onrender.com/zmena_udajov", true);
+            xhttp2.send(final_uzivatelia);
         }
     };
     xhttp.open("POST", "https://itucko-5mig.onrender.com/prihlasenie", true);
@@ -270,10 +305,92 @@ function checkProfile(){
 
 
 }
-setInterval(checkProfile, 5000); // Send request every 1000 milliseconds (1 second)
+
 </script>
 
 <script>
+    
+
+    function createElements(obj) {
+                                
+        const mainDiv = document.createElement('div');
+        mainDiv.classList.add('video-preview');
+        const img = document.createElement('img');
+        img.classList.add('thumbnail');
+        img.src='Pictures/massage.jpeg';
+        const title = document.createElement('h2');
+        title.classList.add('blog-title');
+        title.innerHTML = obj['title'];
+        const text = document.createElement('p');
+        text.classList.add('blog-text');
+        text.innerHTML = obj['text'];
+        const adrs = document.createElement('p');
+        adrs.classList.add('blog-text');
+        adrs.innerHTML = obj['adress'];
+        const buttonn = document.createElement('button');
+        buttonn.type='submit';
+        buttonn.setAttribute("onclick", "deletePobocku("+"'"+obj['title']+"'"+")");
+        var t = document.createTextNode("Odstrániť");
+        buttonn.appendChild(t);
+        mainDiv.appendChild(img);
+        mainDiv.appendChild(title);
+        mainDiv.appendChild(text);
+        mainDiv.appendChild(adrs);
+        mainDiv.appendChild(buttonn);
+        try{
+            document.getElementById("moje_pobocky").appendChild(mainDiv);
+        } catch{}
+        
+    }
+
+    function downloadMojePobocky() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "https://itucko-5mig.onrender.com/pobocky_user", true);
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                getMojePobocky(xhttp);
+            }
+        };
+
+        var uzivatel = localStorage.getItem('flag');
+        //var d = JSON.parse(uzivatel);
+        //var results = JSON.stringify(uzivatel);
+        xhttp.send(uzivatel);
+    }
+    
+    function getMojePobocky(request) {
+        var lastId = -1;
+        var pobocky = JSON.parse(request.responseText);
+
+        for (var i in pobocky) {
+           if (i > lastId) {
+            createElements(pobocky[i]);
+               lastId = i;
+            }
+        }
+    }
+    function deletePobocku(data){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "https://itucko-5mig.onrender.com/vymaz_pobocku", true);
+        xhttp.send(data);
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                const div = document.querySelector('#moje_pobocky');
+                removeAllChildNodes(div);
+                downloadMojePobocky();
+            }
+        };
+
+        //var uzivatel = localStorage.getItem('flag');
+        //var d = JSON.parse(uzivatel);
+        //var results = JSON.stringify(uzivatel);
+        
+    }
+    function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
     
 </script>
 </body>
