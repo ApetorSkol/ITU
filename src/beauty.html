@@ -95,72 +95,23 @@
                         
                         function handleFormSubmit(event) {
                             event.preventDefault();
-                            
                             const data = new FormData(event.target);
-                            
                             const formJSON = Object.fromEntries(data.entries());
-
-                        
                             var results = JSON.stringify(formJSON);
-                            SaveDataToLocalStorage(formJSON);
-                            
-                            window.location.reload();
+                            SavePobockyToHost(results);
                         }
                         
-                        
-
-                            function SaveDataToLocalStorage(data)
+                            function SavePobockyToHost(data)
                             {
-                                var a = [];
-                                a = JSON.parse(localStorage.getItem('session')) || [];
-                                a.push(data);
-                                localStorage.setItem('session', JSON.stringify(a));
-                            }
-
-                            function createElements(obj) {
-                                
-                                const mainDiv = document.createElement('div');
-                                mainDiv.classList.add('video-preview');
-                                const img = document.createElement('img');
-                                img.classList.add('thumbnail');
-                                img.src='Pictures/massage.jpeg';
-                                const title = document.createElement('h2');
-                                title.classList.add('blog-title');
-                                title.innerHTML = obj['title'];
-                                const text = document.createElement('p');
-                                text.classList.add('blog-text');
-                                text.innerHTML = obj['text'];
-                                const adrs = document.createElement('p');
-                                adrs.classList.add('blog-text');
-                                adrs.innerHTML = obj['adress'];
-                                const buttonn = document.createElement('button');
-                                buttonn.type='submit';
-                                buttonn.setAttribute("onclick", "mapChange("+"'"+obj['adress']+"'"+")");
-                                var t = document.createTextNode("Zobraziť na mape");
-                                const buttonis = document.createElement('button');
-                                buttonis.type='submit';
-                                buttonis.setAttribute("onclick", "calendaropenPopup("+"'"+obj['title']+"'"+")");
-                                var te = document.createTextNode("Vytvoriť rezervacie");
-                                buttonis.appendChild(te);
-                                buttonn.appendChild(t);
-                                mainDiv.appendChild(img);
-                                mainDiv.appendChild(title);
-                                mainDiv.appendChild(text);
-                                mainDiv.appendChild(adrs);
-                                mainDiv.appendChild(buttonn);
-                                mainDiv.appendChild(buttonis);
-                                document.getElementById(obj['subcategory']).appendChild(mainDiv);
-                            }
-                            
-                            function deleteElements(){
-                                d_div.remove();
+                                var xhttp = new XMLHttpRequest();
+                                xhttp.open("POST", "https://itucko-5mig.onrender.com/pridat_pobocku", true);
+                                xhttp.send(data);
                             }
 
                         const form = document.querySelector('#add_form');
                         form.addEventListener('submit', handleFormSubmit);
                             
                     </script>
-                    
                     
                 </div>
                 <div class="popup" id="calendar_popup">
@@ -332,25 +283,77 @@ function mapChange(adresos){
 }
 </script>
 <script>
-    var myData = JSON.parse(localStorage.getItem('session'));
-    console.log(myData);
+    
 
-                            //var d_div = document.getElementById('.card');
-                            //deleteElements();
-
-    myData.forEach(obj => {
-        console.log(obj['subcategory']);
-        console.log(obj);
-        if(obj['category'] == "beauty"){
-            createElements(obj);
-        }
-
-    });
-    window.addEventListener("storage", handler);
-
-    function handler() {
-        location.reload();
+    function createElements(obj) {
+                                
+        const mainDiv = document.createElement('div');
+        mainDiv.classList.add('video-preview');
+        const img = document.createElement('img');
+        img.classList.add('thumbnail');
+        img.src='Pictures/massage.jpeg';
+        const title = document.createElement('h2');
+        title.classList.add('blog-title');
+        title.innerHTML = obj['title'];
+        const text = document.createElement('p');
+        text.classList.add('blog-text');
+        text.innerHTML = obj['text'];
+        const adrs = document.createElement('p');
+        adrs.classList.add('blog-text');
+        adrs.innerHTML = obj['adress'];
+        const buttonn = document.createElement('button');
+        buttonn.type='submit';
+        buttonn.setAttribute("onclick", "mapChange("+"'"+obj['adress']+"'"+")");
+        var t = document.createTextNode("Zobraziť na mape");
+        const buttonis = document.createElement('button');
+        buttonis.type='submit';
+        buttonis.setAttribute("onclick", "calendaropenPopup("+"'"+obj['title']+"'"+")");
+        var te = document.createTextNode("Vytvoriť rezervacie");
+        buttonis.appendChild(te);
+        buttonn.appendChild(t);
+        mainDiv.appendChild(img);
+        mainDiv.appendChild(title);
+        mainDiv.appendChild(text);
+        mainDiv.appendChild(adrs);
+        mainDiv.appendChild(buttonn);
+        mainDiv.appendChild(buttonis);
+        try{
+            document.getElementById(obj['subcategory']).appendChild(mainDiv);
+        } catch{}
+        
     }
+
+    function downloadPobocky() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "https://itucko-5mig.onrender.com/pobocky", true);
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                getNewData(xhttp);
+            }
+        };
+
+            
+        xhttp.send(null);
+    }
+    var lastId = 0;
+    function getNewData(request) {
+
+        var pobocky = JSON.parse(request.responseText);
+
+        for (var i in pobocky) {
+           if (i > lastId) {
+            createElements(pobocky[i]);
+                console.log(lastId);
+                console.log(i);
+                lastId = i;
+            }
+        }
+        console.log(lastId);
+
+    }
+
+    setInterval(downloadPobocky, 1000);
+
 </script>
 <script>
 let calendar = document.querySelector('.calendar') // najdi si kalendar
