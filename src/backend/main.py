@@ -12,7 +12,7 @@ CORS(app)
 def zmena_udajov():
     f = open("user.json", "r")
     users = json.loads(f.read())
-    incoming_data = json.loads(request.get_data().decode("utf-8"))
+    incoming_data = request.get_data().decode("utf-8")
     for user in users:
         if user["email"] == incoming_data["email"]:
             user["meno"] = incoming_data["meno"]
