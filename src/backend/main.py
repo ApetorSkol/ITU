@@ -87,6 +87,8 @@ def rezervacia():
     users = json.loads(f.read())
     for user in users:
         for pobocka in user["pobocky"]:
+            if pobocka["title"] != LAST_PODNIK:
+                continue
             for rezervace in pobocka["rezervacie"]:
                 if rezervace == request.get_data().decode("utf-8"):
                     print("uspesne som dokoncil /rezervacia")
