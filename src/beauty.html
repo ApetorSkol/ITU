@@ -7,9 +7,18 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-
-<body>
+<body onload="checkLogin()">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
+    <script type="module">
+        "use strict";
+        import users from './user.json' assert {type: 'json'};
+
+        for(let i = 0; i < users.length; i++){
+            localStorage.setItem("correct_email" + i, users[i]["email"]);
+        }
+
+
+    </script>
     <div id="top">
         <section id="bar">
             <h1 id="title" >
@@ -144,25 +153,51 @@
                         <div class="month-list"></div>
                     </div>
                 </div>
-                <button type="submit" class="btn" onclick="openPopup()">
+                <button type="submit" id="btn" onclick="openPopup()">
                     Prihlásiť sa
                 </button>
                 <div class="popup" id="popup">
-                    <button type="button" id="close_btn" onclick=closePopup()> X </button>
+
+                    <script>
+                        function saveEmailAddress() {
+                        // Get the value of the email input field
+                        var email = document.form.email.value;
+                        // Save the email address to local storage
+                        localStorage.setItem("input-email", email);
+                        var found = false;
+                        var i = 0;
+                        for (i = 0; i < localStorage.length - 1; ++i){
+                            if (email == localStorage.getItem(localStorage.key(i))){
+                                found = true;
+                                break;
+                                }
+                            }
+                        if (found == false){
+                            openPopup();
+                        }
+                        else{
+                            localStorage.removeItem("input-email");
+                            localStorage.setItem("flag", localStorage.getItem(localStorage.key(i)));
+                            closePopup();
+                        }
+                        }
+                    </script>
+
+                    <button type="button" id="x_btn" onclick=closePopup()> X </button>
                     <h2>Prihlasiť sa</h2>
                     <p>Nemáte účet? <span class="Registrovat_sa">Registrovať sa</span></p>
-                    <form class="login_form" action="home.html" method="post" name="form" onsubmit="return validated()">
+                    <form class="login_form" action="home.html" method="post" name="form" onsubmit="saveEmailAddress(); return validated();">
                         <div class="font">Email alebo tel. číslo</div>
                         <input autocomplete="off" type="text" name="email">
                         <div class="font font2">Heslo</div>
                         <input type="password" name="password">
                     </form>
                     <form action="profil.html">
-                        <button type="submit" onclick=closePopup()>Prihlásiť sa</button>
+                        <button type="button" onclick=saveEmailAddress()>Prihlásiť sa</button>
                     </form>
                 </div>
             </div>
-            <script src="valid.js"></script>
+
         </section>
 
         <section id="menu">
@@ -193,7 +228,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="profil.html" class="profil_btn">Profil</a>
+                    <a href="profil.html" id="profil_page">Profil</a>
                 </li>
             </ul>
         </section>
@@ -235,8 +270,15 @@ function openPopup(){
 }
 function closePopup(){
     popup.classList.remove("open-popup");
+    bottom.classList.remove("blur_background");
+    var tlacidlo = document.getElementById("btn");
+    tlacidlo.innerHTML = "Odhlásiť sa";
 }
 
+function changeProfileButton(){
+    var tlacidlo = document.getElementById("btn");
+    tlacidlo.innerHTML = "Profil";
+}
 let add_popup = document.getElementById("add_popup");
 function addopenPopup(){
     add_popup.classList.add("open-popup");
@@ -473,6 +515,26 @@ document.querySelector('#next-year').onclick = () => {
     generateCalendar(curr_month.value, curr_year.value)
 }
 </script>
+<script>
+    function logout(){
+        localStorage.removeItem("flag");
+        var tlacidlo = document.getElementById("btn");
+        tlacidlo.innerHTML = "Prihlásiť sa";
+    }
+    //<a href="profil.html" id="profil_page">Profil</a>
+    function checkLogin(){
+        if ("flag" in localStorage){
+            var tlacidlo = document.getElementById("btn");
 
+            tlacidlo.innerHTML = "Odhlásiť sa";
+            tlacidlo.onclick = logout;
+
+        }
+        else{
+            var profil_option = document.getElementById("profil_page");
+            profil_option.href="";
+        }
+    }
+</script>
 </body>
 </html>
