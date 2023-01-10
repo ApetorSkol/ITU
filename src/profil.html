@@ -8,23 +8,8 @@
     <title>Document</title>
 </head>
 
-<body  onload="checkProfile()">
-<script type="module">
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            var emaily = JSON.parse(xhttp.responseText);
-            for(let o = 0; o < emaily.length; o++){
-                localStorage.setItem("correct_email"+o, emaily[o]);
-            }
-        
-            }
-        }
-        xhttp.open("POST", "https://itucko-5mig.onrender.com/emaily", true);
-        xhttp.send();
+<body  >
 
-    </script>
-    
     <div id="top">
         <section id="bar">
             <h1 id="title" >
