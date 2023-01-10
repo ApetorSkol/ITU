@@ -481,7 +481,7 @@ generateCalendar = (month, year) => {
                         xhtt.open("POST", "https://itucko-5mig.onrender.com/del_rezervacia", true);
                         day.style.backgroundColor = 'white';
                     }
-                    xhtt.send(datumis);
+                    xhtt.send(datumis + " " + localStorage.getItem("flag"));
                 }
             };
             xhttp.open("POST", "https://itucko-5mig.onrender.com/rezervacia", true);
