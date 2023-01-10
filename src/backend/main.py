@@ -12,6 +12,7 @@ CORS(app)
 def de_rezervacia():
     global LAST_PODNIK
     LAST_PODNIK = request.get_data().decode("utf-8")
+    print("uspesne som dokoncil /last_res")
     return LAST_PODNIK
 
 
@@ -29,7 +30,9 @@ def del_rezervacia():
             f = open("user.json", "w")
             f.write(json_object)
             f.close()
+            print("uspesne som dokoncil /del_rezervacia")
             return "ano"
+    print("neuspesne som dokoncil /del_rezervacia")
     return "nie"
 
 
@@ -47,7 +50,9 @@ def mkae_rezervacia():
             f = open("user.json", "w")
             f.write(json_object)
             f.close()
+            print("uspesne som dokoncil /make_rezervacia")
             return "ano"
+    print("neuspesne som dokoncil /make_rezervacia")
     return "nie"
 
 
@@ -59,7 +64,9 @@ def rezervacia():
         for pobocka in user["pobocky"]:
             for rezervace in pobocka["rezervacie"]:
                 if rezervace == request.get_data().decode("utf-8"):
+                    print("uspesne som dokoncil /rezervacia")
                     return "ano"
+    print("neuspesne som dokoncil /rezervacia")
     return "nie"
 
 
@@ -76,7 +83,9 @@ def pridat_pobocku():
             f = open("user.json", "w")
             f.write(json_object)
             f.close()
+            print("uspesne som dokoncil /pridat_pobocku")
             return "ano"
+    print("neuspesne som dokoncil /pridat_pobocku")
     return "nie"
 
 
@@ -87,6 +96,7 @@ def pobocky():
     output = []
     for user in users:
         output = output + user["pobocky"]
+    print("uspesne som dokoncil /pobocky")
     return output
 
 
@@ -97,7 +107,9 @@ def prihlasenie():
     users = json.loads(f.read())
     for user in users:
         if user["email"] == request.get_data().decode("utf-8"):
+            print("uspesne som dokoncil /prihlasenie")
             return user
+    print("neuspesne som dokoncil /prihlasenie")
     return None
 
 # basic pingerrino
@@ -108,6 +120,7 @@ def parse_request():
     f.write("Woops! I have deleted the content!")
     f.close()
     f = open("demofile3.txt", "r")
+    print("spracoval som ping")
     return f.read()
 
 
