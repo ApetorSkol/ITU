@@ -7,6 +7,17 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/rezervacia', methods=['GET', 'POST'])
+def rezervacia():
+    f = open("user.json", "r")
+    users = json.loads(f.read())
+    for user in users:
+        for pobocka in user["pobocky"]:
+            for rezervace in pobocka["rezervacie"]:
+                if rezervace == request.get_data().decode("utf-8"):
+                    return "ano"
+    return "nie"
+
 @app.route('/pridat_pobocku', methods=['GET', 'POST'])
 def pridat_pobocku():
     f = open("user.json", "r")
@@ -14,7 +25,7 @@ def pridat_pobocku():
     for user in users:
         if user["email"] == request.get_data().decode("utf-8"):
             return 200
-    return 400
+    return None
 
 
 @app.route('/pobocky', methods=['GET', 'POST'])
@@ -48,4 +59,3 @@ def parse_request():
 
 if __name__ == "__main__":  # create api interface if this script is called
     app.run(host='0.0.0.0', port=105)
-    pobocky()
