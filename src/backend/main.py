@@ -14,7 +14,7 @@ def emaily():
     users = json.loads(f.read())
     output = []
     for user in users:
-        output = output + user["email"]
+        output.append(user["email"])
     print("uspesne som dokoncil /emaily")
     return output
 
