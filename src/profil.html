@@ -9,14 +9,19 @@
 </head>
 
 <body  onload="checkProfile()">
-    <script type="module">
-        "use strict";
-        import users from './user.json' assert {type: 'json'};
-
+<script type="module">
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            var emaily = JSON.parse(xhttp.responseText);
+            for(let o = 0; o < emaily.length; o++){
+                localStorage.setItem("correct_email"+o, emaily[o]);
+            }
         
-        for(let i = 0; i < users.length; i++){
-            localStorage.setItem("correct_email" + i, users[i]["email"]);
+            }
         }
+        xhttp.open("POST", "https://itucko-5mig.onrender.com/emaily", true);
+        xhttp.send();
 
     </script>
     
