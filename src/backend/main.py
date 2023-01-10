@@ -7,6 +7,38 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/del_rezervacia', methods=['GET', 'POST'])
+def del_rezervacia():
+    f = open("user.json", "r")
+    users = json.loads(f.read())
+    for user in users:
+        for pobocka in user["pobocky"]:
+            pobocka["rezervacie"].remove(request.get_data().decode("utf-8"))
+            f.close()
+            json_object = json.dumps(users, indent=4)
+            f = open("user.json", "w")
+            f.write(json_object)
+            f.close()
+            return "ano"
+    return "nie"
+
+
+@app.route('/make_rezervacia', methods=['GET', 'POST'])
+def mkae_rezervacia():
+    f = open("user.json", "r")
+    users = json.loads(f.read())
+    for user in users:
+        for pobocka in user["pobocky"]:
+            pobocka["rezervacie"].append(request.get_data().decode("utf-8"))
+            f.close()
+            json_object = json.dumps(users, indent=4)
+            f = open("user.json", "w")
+            f.write(json_object)
+            f.close()
+            return "ano"
+    return "nie"
+
+
 @app.route('/rezervacia', methods=['GET', 'POST'])
 def rezervacia():
     f = open("user.json", "r")
