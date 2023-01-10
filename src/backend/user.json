@@ -8,30 +8,15 @@
             {
                 "nazov-title": "Nechty u Pe\u0161ka",
                 "adresa": "Partizanska petstotri Poprad",
-                "datum": "12.01.2022",
-                "cas": "12:00"
+                "datum": "12.01.2022"
             },
             {
                 "nazov-title": "Fitko u Pe\u0161ka",
                 "adresa": "Partizanska osemstotri Poprad",
-                "datum": "14.01.2022",
-                "cas": "8:00"
+                "datum": "14.01.2022"
             }
         ],
         "pobocky": [
-            {
-                "category": "beauty",
-                "subcategory": "nechty",
-                "title": "nazov",
-                "text": "nieco",
-                "adress": "Brno kralovo pole",
-                "email": "asdd@gmailc.om",
-                "rezervacie": [
-                    "9January2024",
-                    "8January2024",
-                    "8January2022"
-                ]
-            },
             {
                 "category": "beauty",
                 "subcategory": "nechty",
@@ -50,6 +35,7 @@
         "priezvisko": "Slivka",
         "email": "matsli@gmail.com",
         "phoneNumbers": "0922 222 222",
+        "rezervacie": [],
         "pobocky": [
             {
                 "category": "beauty",
@@ -80,6 +66,7 @@
         "priezvisko": "Zalezak",
         "email": "danzal@gmail.com",
         "phoneNumbers": "0933 333 333",
+        "rezervacie": [],
         "pobocky": [
             {
                 "category": "beauty",
