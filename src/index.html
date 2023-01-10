@@ -257,17 +257,15 @@
 let popup = document.getElementById("popup");
 function openPopup(){
     popup.classList.add("open-popup");
-    
+    bottom.classList.add("blur_background");
+
 }
 function closePopup(){
     popup.classList.remove("open-popup");
+    bottom.classList.remove("blur_background");
+    bottom.classList.remove("blur_background");
     var tlacidlo = document.getElementById("btn");
     tlacidlo.innerHTML = "Odhlásiť sa";
-}
-
-function changeProfileButton(){
-    var tlacidlo = document.getElementById("btn");
-    tlacidlo.innerHTML = "Profil";
 }
 
 let add_popup = document.getElementById("add_popup");
@@ -276,7 +274,14 @@ function addopenPopup(){
 }
 function addclosePopup(){
     add_popup.classList.remove("open-popup");
+    
 }
+
+function changeProfileButton(){
+    var tlacidlo = document.getElementById("btn");
+    tlacidlo.innerHTML = "Profil";
+}
+
 </script>
 <script>
     

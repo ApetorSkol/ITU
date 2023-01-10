@@ -197,13 +197,24 @@
 let popup = document.getElementById("popup");
 function openPopup(){
     popup.classList.add("open-popup");
-    var tlacidlo = document.getElementById("btn");
-    localStorage.removeItem("flag");
-    tlacidlo.onclick = logout;
-    
+    bottom.classList.add("blur_background");
+
 }
 function closePopup(){
     popup.classList.remove("open-popup");
+    bottom.classList.remove("blur_background");
+    bottom.classList.remove("blur_background");
+    var tlacidlo = document.getElementById("btn");
+    tlacidlo.innerHTML = "Odhlásiť sa";
+}
+
+let add_popup = document.getElementById("add_popup");
+function addopenPopup(){
+    add_popup.classList.add("open-popup");
+}
+function addclosePopup(){
+    add_popup.classList.remove("open-popup");
+    
 }
 
 function checkProfile(){  
@@ -212,7 +223,7 @@ function checkProfile(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-
+            
             var uzivatelia = JSON.parse(xhttp.responseText);
             
             console.log(uzivatelia);

@@ -282,18 +282,18 @@ function openPopup(){
 function closePopup(){
     popup.classList.remove("open-popup");
     bottom.classList.remove("blur_background");
-
+    bottom.classList.remove("blur_background");
+    var tlacidlo = document.getElementById("btn");
+    tlacidlo.innerHTML = "Odhlásiť sa";
 }
 
 let add_popup = document.getElementById("add_popup");
 function addopenPopup(){
     add_popup.classList.add("open-popup");
 }
-function closePopup(){
-    popup.classList.remove("open-popup");
-    bottom.classList.remove("blur_background");
-    var tlacidlo = document.getElementById("btn");
-    tlacidlo.innerHTML = "Odhlásiť sa";
+function addclosePopup(){
+    add_popup.classList.remove("open-popup");
+    
 }
 
 function changeProfileButton(){
