@@ -8,6 +8,17 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/emaily', methods=['GET', 'POST'])
+def emaily():
+    f = open("user.json", "r")
+    users = json.loads(f.read())
+    output = []
+    for user in users:
+        output = output + user["email"]
+    print("uspesne som dokoncil /emaily")
+    return output
+
+
 @app.route('/last_res', methods=['GET', 'POST'])
 def de_rezervacia():
     global LAST_PODNIK
