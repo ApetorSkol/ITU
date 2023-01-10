@@ -343,13 +343,9 @@ function mapChange(adresos){
         for (var i in pobocky) {
            if (i > lastId) {
             createElements(pobocky[i]);
-                console.log(lastId);
-                console.log(i);
                 lastId = i;
             }
         }
-        console.log(lastId);
-
     }
 
     setInterval(downloadPobocky, 1000);
