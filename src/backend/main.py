@@ -8,6 +8,26 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/zmena_udajov', methods=['GET', 'POST'])
+def zmena_udajov():
+    f = open("user.json", "r")
+    users = json.loads(f.read())
+    incoming_data = json.loads(request.get_data().decode("utf-8"))
+    for user in users:
+        if user["email"] == incoming_data["email"]:
+            user["meno"] = incoming_data["meno"]
+            user["priezvisko"] = incoming_data["priezvisko"]
+            user["email"] = incoming_data["email"]
+            user["phoneNumbers"] = incoming_data["phoneNumbers"]
+            f.close()
+            json_object = json.dumps(users, indent=4)
+            f = open("user.json", "w")
+            f.write(json_object)
+            f.close()
+            return "ano"
+    return "nie"
+
+
 @app.route('/vymaz_pobocku', methods=['GET', 'POST'])
 def vymaz_pobocku():
     f = open("user.json", "r")
