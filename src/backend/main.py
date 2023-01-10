@@ -62,14 +62,22 @@ def rezervacia():
                     return "ano"
     return "nie"
 
+
 @app.route('/pridat_pobocku', methods=['GET', 'POST'])
 def pridat_pobocku():
     f = open("user.json", "r")
     users = json.loads(f.read())
+    incoming_data = json.loads(request.get_data().decode("utf-8"))
     for user in users:
-        if user["email"] == request.get_data().decode("utf-8"):
-            return 200
-    return None
+        if user["email"] == incoming_data["email"]:
+            user["pobocky"].append(incoming_data)
+            f.close()
+            json_object = json.dumps(users, indent=4)
+            f = open("user.json", "w")
+            f.write(json_object)
+            f.close()
+            return "ano"
+    return "nie"
 
 
 @app.route('/pobocky', methods=['GET', 'POST'])
