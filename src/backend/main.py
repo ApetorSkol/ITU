@@ -8,6 +8,45 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/zmena_udajov', methods=['GET', 'POST'])
+def zmena_udajov():
+    f = open("user.json", "r")
+    users = json.loads(f.read())
+    incoming_data = request.get_data().decode("utf-8")
+    for user in users:
+        if user["email"] == incoming_data["email"]:
+            user["meno"] = incoming_data["meno"]
+            user["priezvisko"] = incoming_data["priezvisko"]
+            user["email"] = incoming_data["email"]
+            user["phoneNumbers"] = incoming_data["phoneNumbers"]
+            f.close()
+            json_object = json.dumps(users, indent=4)
+            f = open("user.json", "w")
+            f.write(json_object)
+            f.close()
+            return "ano"
+    return "nie"
+
+
+@app.route('/vymaz_pobocku', methods=['GET', 'POST'])
+def vymaz_pobocku():
+    f = open("user.json", "r")
+    users = json.loads(f.read())
+    incoming_data = request.get_data().decode("utf-8")
+    for user in users:
+        for pobocka in user["pobocky"]:
+            if pobocka["title"] != incoming_data:
+                continue
+            user["pobocky"].remove(pobocka)
+            f.close()
+            json_object = json.dumps(users, indent=4)
+            f = open("user.json", "w")
+            f.write(json_object)
+            f.close()
+            return "ano"
+    return "nie"
+
+
 @app.route('/pobocky_user', methods=['GET', 'POST'])
 def pobocky_user():
     f = open("user.json", "r")
@@ -45,11 +84,24 @@ def de_rezervacia():
 def del_rezervacia():
     f = open("user.json", "r")
     users = json.loads(f.read())
+    date = request.get_data().decode("utf-8").split(" ")[0]
+    email = request.get_data().decode("utf-8").split(" ")[1]
+    index = 0
+    for user in users:
+        if user["email"] == email:
+            break
+        index = index + 1
+
     for user in users:
         for pobocka in user["pobocky"]:
             if pobocka["title"] != LAST_PODNIK:
                 continue
-            pobocka["rezervacie"].remove(request.get_data().decode("utf-8"))
+            pobocka["rezervacie"].remove(date)
+            users[index]["rezervacie"].remove({
+                "nazov-title": pobocka["title"],
+                "adresa": pobocka["adress"],
+                "datum": date
+            })
             f.close()
             json_object = json.dumps(users, indent=4)
             f = open("user.json", "w")
@@ -65,11 +117,24 @@ def del_rezervacia():
 def mkae_rezervacia():
     f = open("user.json", "r")
     users = json.loads(f.read())
+    date = request.get_data().decode("utf-8").split(" ")[0]
+    email = request.get_data().decode("utf-8").split(" ")[1]
+    index = 0
+    for user in users:
+        if user["email"] == email:
+            break
+        index = index + 1
+
     for user in users:
         for pobocka in user["pobocky"]:
             if pobocka["title"] != LAST_PODNIK:
                 continue
-            pobocka["rezervacie"].append(request.get_data().decode("utf-8"))
+            pobocka["rezervacie"].append(date)
+            users[index]["rezervacie"].append({
+                "nazov-title": pobocka["title"],
+                "adresa": pobocka["adress"],
+                "datum": date
+            })
             f.close()
             json_object = json.dumps(users, indent=4)
             f = open("user.json", "w")
