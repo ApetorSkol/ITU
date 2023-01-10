@@ -8,23 +8,8 @@
     <title>Document</title>
 </head>
 
-<body onload="checkLogin()">
+<body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
-   <script type="module">
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            var emaily = JSON.parse(xhttp.responseText);
-            for(let o = 0; o < emaily.length; o++){
-                localStorage.setItem("correct_email"+o, emaily[o]);
-            }
-        
-            }
-        }
-        xhttp.open("POST", "https://itucko-5mig.onrender.com/emaily", true);
-        xhttp.send();
-
-    </script>
     <div id="top">
         <section id="bar">
             <h1 id="title" >
@@ -110,19 +95,61 @@
                         
                         function handleFormSubmit(event) {
                             event.preventDefault();
+                            
                             const data = new FormData(event.target);
+                            
                             const formJSON = Object.fromEntries(data.entries());
+
+                        
                             var results = JSON.stringify(formJSON);
-                            SavePobockyToHost(results);
+                            SaveDataToLocalStorage(formJSON);
+                            
+                            window.location.reload();
                         }
                         
-                            function SavePobockyToHost(data)
+                        
+
+                            function SaveDataToLocalStorage(data)
                             {
-                                var xhttp = new XMLHttpRequest();
-                                xhttp.open("POST", "https://itucko-5mig.onrender.com/pridat_pobocku", true);
-                                xhttp.send(data);
+                                var a = [];
+                                a = JSON.parse(localStorage.getItem('session')) || [];
+                                a.push(data);
+                                localStorage.setItem('session', JSON.stringify(a));
+                            }
+
+                            function createElements(obj) {
+                                
+                                const mainDiv = document.createElement('div');
+                                mainDiv.classList.add('video-preview');
+                                const img = document.createElement('img');
+                                img.classList.add('thumbnail');
+                                img.src='Pictures/massage.jpeg';
+                                const title = document.createElement('h2');
+                                title.classList.add('blog-title');
+                                title.innerHTML = obj['title'];
+                                const text = document.createElement('p');
+                                text.classList.add('blog-text');
+                                text.innerHTML = obj['text'];
+                                const adrs = document.createElement('p');
+                                adrs.classList.add('blog-text');
+                                adrs.innerHTML = obj['adress'];
+                                const buttonn = document.createElement('button');
+                                buttonn.type='submit';
+                                buttonn.setAttribute("onclick", "mapChange("+"'"+obj['adress']+"'"+")");
+                                var t = document.createTextNode("Zobraziť na mape");
+                                buttonn.appendChild(t);
+                                mainDiv.appendChild(img);
+                                mainDiv.appendChild(title);
+                                mainDiv.appendChild(text);
+                                mainDiv.appendChild(adrs);
+                                mainDiv.appendChild(buttonn);
+                                document.getElementById(obj['subcategory']).appendChild(mainDiv);
                             }
                             
+                            function deleteElements(){
+                                d_div.remove();
+                            }
+
                         const form = document.querySelector('#add_form');
                         form.addEventListener('submit', handleFormSubmit);
                             
@@ -130,51 +157,25 @@
                     
                     
                 </div>
-                <button type="submit" id="btn" class = "btn" onclick="openPopup()">
+                <button type="submit" class="btn" onclick="openPopup()">
                     Prihlásiť sa
                 </button>
                 <div class="popup" id="popup">
-
-                    <script>
-                        function saveEmailAddress() {
-                        // Get the value of the email input field
-                        var email = document.form.email.value;
-                        // Save the email address to local storage
-                        localStorage.setItem("input-email", email);
-                        var found = false;
-                        var i = 0;
-                        for (i = 0; i < localStorage.length - 1; ++i){
-                            if (email == localStorage.getItem(localStorage.key(i))){
-                                found = true;
-                                break;
-                                }
-                            }
-                        if (found == false){
-                            openPopup();
-                        }
-                        else{
-                            localStorage.removeItem("input-email");
-                            localStorage.setItem("flag", localStorage.getItem(localStorage.key(i)));
-                            closePopup();
-                        }
-                        }
-                    </script>
-
-                    <button type="button" id="x_btn" onclick=closePopup()> X </button>
+                    <button type="button" id="close_btn" onclick=closePopup()> X </button>
                     <h2>Prihlasiť sa</h2>
                     <p>Nemáte účet? <span class="Registrovat_sa">Registrovať sa</span></p>
-                    <form class="login_form" action="home.html" method="post" name="form" onsubmit="saveEmailAddress(); return validated();">
+                    <form class="login_form" action="home.html" method="post" name="form" onsubmit="return validated()">
                         <div class="font">Email alebo tel. číslo</div>
                         <input autocomplete="off" type="text" name="email">
                         <div class="font font2">Heslo</div>
                         <input type="password" name="password">
                     </form>
                     <form action="profil.html">
-                        <button type="button" onclick=saveEmailAddress()>Prihlásiť sa</button>
+                        <button type="submit" onclick=closePopup()>Pokračovať</button>
                     </form>
                 </div>
             </div>
-
+            <script src="valid.js"></script>
         </section>
 
         <section id="menu">
@@ -205,7 +206,7 @@
                     </ul>
                 </li>
                 <li>
-                       <a href="profil.html" id="profil_page">Profil</a>
+                    <a href="profil.html" class="profil_btn">Profil</a>
                 </li>
             </ul>
         </section>
@@ -262,10 +263,13 @@ function openPopup(){
 }
 function closePopup(){
     popup.classList.remove("open-popup");
-    bottom.classList.remove("blur_background");
-    bottom.classList.remove("blur_background");
     var tlacidlo = document.getElementById("btn");
     tlacidlo.innerHTML = "Odhlásiť sa";
+}
+
+function changeProfileButton(){
+    var tlacidlo = document.getElementById("btn");
+    tlacidlo.innerHTML = "Profil";
 }
 
 let add_popup = document.getElementById("add_popup");
@@ -284,95 +288,23 @@ function changeProfileButton(){
 
 </script>
 <script>
-    
+    var myData = JSON.parse(localStorage.getItem('session'));
+    console.log(myData);
 
-    function createElements(obj) {
-                                
-        const mainDiv = document.createElement('div');
-        mainDiv.classList.add('video-preview');
-        const img = document.createElement('img');
-        img.classList.add('thumbnail');
-        img.src='Pictures/massage.jpeg';
-        const title = document.createElement('h2');
-        title.classList.add('blog-title');
-        title.innerHTML = obj['title'];
-        const text = document.createElement('p');
-        text.classList.add('blog-text');
-        text.innerHTML = obj['text'];
-        const adrs = document.createElement('p');
-        adrs.classList.add('blog-text');
-        adrs.innerHTML = obj['adress'];
-        const buttonn = document.createElement('button');
-        buttonn.type='submit';
-        buttonn.setAttribute("onclick", "mapChange("+"'"+obj['adress']+"'"+")");
-        var t = document.createTextNode("Zobraziť na mape");
-        const buttonis = document.createElement('button');
-        buttonis.type='submit';
-        buttonis.setAttribute("onclick", "calendaropenPopup("+"'"+obj['title']+"'"+")");
-        var te = document.createTextNode("Vytvoriť rezervacie");
-        buttonis.appendChild(te);
-        buttonn.appendChild(t);
-        mainDiv.appendChild(img);
-        mainDiv.appendChild(title);
-        mainDiv.appendChild(text);
-        mainDiv.appendChild(adrs);
-        mainDiv.appendChild(buttonn);
-        mainDiv.appendChild(buttonis);
-        try{
-            document.getElementById(obj['subcategory']).appendChild(mainDiv);
-        } catch{}
-        
-    }
+                            //var d_div = document.getElementById('.card');
+                            //deleteElements();
 
-    function downloadPobocky() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "https://itucko-5mig.onrender.com/pobocky", true);
-        xhttp.onreadystatechange = function() {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-                getNewData(xhttp);
-            }
-        };
+    myData.forEach(obj => {
+        console.log(obj['subcategory']);
+        console.log(obj);
+        createElements(obj);
+    });
 
-            
-        xhttp.send(null);
-    }
-    var lastId = 0;
-    function getNewData(request) {
 
-        var pobocky = JSON.parse(request.responseText);
+    window.addEventListener("storage", handler);
 
-        for (var i in pobocky) {
-           if (i > lastId) {
-            createElements(pobocky[i]);
-               lastId = i;
-            }
-        }
-        console.log(lastId);
-
-    }
-
-    setInterval(downloadPobocky, 1000);
-
-</script>
-<script>
-    function logout(){
-        localStorage.removeItem("flag");
-        var tlacidlo = document.getElementById("btn");
-        tlacidlo.innerHTML = "Prihlásiť sa";
-    }
-    //<a href="profil.html" id="profil_page">Profil</a>
-    function checkLogin(){
-        if ("flag" in localStorage){
-            var tlacidlo = document.getElementById("btn");
-
-            tlacidlo.innerHTML = "Odhlásiť sa";
-            tlacidlo.onclick = logout;
-
-        }
-        else{
-            var profil_option = document.getElementById("profil_page");
-            profil_option.href="";
-        }
+    function handler() {
+        location.reload();
     }
 </script>
 </body>
