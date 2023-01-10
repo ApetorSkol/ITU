@@ -1,3 +1,4 @@
+import flask
 from flask import Flask, request # creating flask API
 from flask_cors import CORS
 import json
@@ -7,12 +8,21 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/last_res', methods=['GET', 'POST'])
+def de_rezervacia():
+    global LAST_PODNIK
+    LAST_PODNIK = request.get_data().decode("utf-8")
+    return LAST_PODNIK
+
+
 @app.route('/del_rezervacia', methods=['GET', 'POST'])
 def del_rezervacia():
     f = open("user.json", "r")
     users = json.loads(f.read())
     for user in users:
         for pobocka in user["pobocky"]:
+            if pobocka["title"] != LAST_PODNIK:
+                continue
             pobocka["rezervacie"].remove(request.get_data().decode("utf-8"))
             f.close()
             json_object = json.dumps(users, indent=4)
@@ -29,6 +39,8 @@ def mkae_rezervacia():
     users = json.loads(f.read())
     for user in users:
         for pobocka in user["pobocky"]:
+            if pobocka["title"] != LAST_PODNIK:
+                continue
             pobocka["rezervacie"].append(request.get_data().decode("utf-8"))
             f.close()
             json_object = json.dumps(users, indent=4)
@@ -70,6 +82,7 @@ def pobocky():
     return output
 
 
+# vrati ti usera zo vsetkeho
 @app.route('/prihlasenie', methods=['GET', 'POST'])
 def prihlasenie():
     f = open("user.json", "r")
@@ -79,6 +92,7 @@ def prihlasenie():
             return user
     return None
 
+# basic pingerrino
 @app.route('/ping', methods=['GET', 'POST'])
 def parse_request():
     #a = Request.get_data()
