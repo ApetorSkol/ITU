@@ -8,6 +8,25 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/vymaz_pobocku', methods=['GET', 'POST'])
+def vymaz_pobocku():
+    f = open("user.json", "r")
+    users = json.loads(f.read())
+    incoming_data = request.get_data().decode("utf-8")
+    for user in users:
+        for pobocka in user["pobocky"]:
+            if pobocka["title"] != incoming_data:
+                continue
+            user["pobocky"].remove(pobocka)
+            f.close()
+            json_object = json.dumps(users, indent=4)
+            f = open("user.json", "w")
+            f.write(json_object)
+            f.close()
+            return "ano"
+    return "nie"
+
+
 @app.route('/pobocky_user', methods=['GET', 'POST'])
 def pobocky_user():
     f = open("user.json", "r")
