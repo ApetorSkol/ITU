@@ -945,3 +945,20 @@ button{
     padding-top: 0px;
 
 }
+
+.profilove_tlac{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    width: 250px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.profilove_tlac:hover{
+    opacity: 0.9;
+}
