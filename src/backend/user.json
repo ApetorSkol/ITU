@@ -1,31 +1,107 @@
-[{
-    "meno": "Michal",
-    "priezvisko": "Fric",
-    "email": "micfri@gmail.com",
-    "phoneNumbers": "0911 111 111",
-    "rezervacie": [{
-        "nazov-title": "Nechty u Peška",
-        "adresa": "Partizanska petstotri Poprad",
-        "datum": "12.01.2022",
-        "cas": "12:00"
+[
+    {
+        "meno": "Michal",
+        "priezvisko": "Fric",
+        "email": "micfri@gmail.com",
+        "phoneNumbers": "0911 111 111",
+        "rezervacie": [
+            {
+                "nazov-title": "Nechty u Pe\u0161ka",
+                "adresa": "Partizanska petstotri Poprad",
+                "datum": "12.01.2022",
+                "cas": "12:00"
+            },
+            {
+                "nazov-title": "Fitko u Pe\u0161ka",
+                "adresa": "Partizanska osemstotri Poprad",
+                "datum": "14.01.2022",
+                "cas": "8:00"
+            }
+        ],
+        "pobocky": [
+            {
+                "category": "beauty",
+                "subcategory": "nechty",
+                "title": "nazov",
+                "text": "nieco",
+                "adress": "Brno kralovo pole",
+                "email": "asdd@gmailc.om",
+                "rezervacie": [
+                    "9January2024",
+                    "8January2024"
+                ]
+            },
+            {
+                "category": "beauty",
+                "subcategory": "nechty",
+                "title": "nazov",
+                "text": "nieco",
+                "adress": "Brno kralovo pole",
+                "email": "asdd@gmailc.om",
+                "rezervacie": [
+                    "19January2024"
+                ]
+            }
+        ]
     },
     {
-        "nazov-title": "Fitko u Peška",
-        "adresa": "Partizanska osemstotri Poprad",
-        "datum": "14.01.2022",
-        "cas": "8:00"
-    }],
-    "pobocky": [{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om","rezervacie": ["9January2024"]},{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om","rezervacie":["9January2024"]}]
-},{
-    "meno": "Mato",
-    "priezvisko": "Slivka",
-    "email": "matsli@gmail.com",
-    "phoneNumbers": "0922 222 222",
-    "pobocky": [{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om","rezervacie": ["9January2024"]},{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om","rezervacie": ["9January2024"]}]
-},{
-    "meno": "Daniel",
-    "priezvisko": "Zalezak",
-    "email": "danzal@gmail.com",
-    "phoneNumbers": "0933 333 333",
-    "pobocky": [{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om","rezervacie": ["9January2024"]},{"category":"beauty","subcategory":"nechty","title":"nazov","text":"nieco","adress":"Brno kralovo pole","email":"asdd@gmailc.om","rezervacie": ["9January2024"]}]
-}]
+        "meno": "Mato",
+        "priezvisko": "Slivka",
+        "email": "matsli@gmail.com",
+        "phoneNumbers": "0922 222 222",
+        "pobocky": [
+            {
+                "category": "beauty",
+                "subcategory": "nechty",
+                "title": "nazov",
+                "text": "nieco",
+                "adress": "Brno kralovo pole",
+                "email": "asdd@gmailc.om",
+                "rezervacie": [
+                    "29January2024"
+                ]
+            },
+            {
+                "category": "beauty",
+                "subcategory": "nechty",
+                "title": "nazov",
+                "text": "nieco",
+                "adress": "Brno kralovo pole",
+                "email": "asdd@gmailc.om",
+                "rezervacie": [
+                    "1January2024"
+                ]
+            }
+        ]
+    },
+    {
+        "meno": "Daniel",
+        "priezvisko": "Zalezak",
+        "email": "danzal@gmail.com",
+        "phoneNumbers": "0933 333 333",
+        "pobocky": [
+            {
+                "category": "beauty",
+                "subcategory": "nechty",
+                "title": "nazov",
+                "text": "nieco",
+                "adress": "Brno kralovo pole",
+                "email": "asdd@gmailc.om",
+                "rezervacie": [
+                    "2January2024"
+                ]
+            },
+            {
+                "category": "beauty",
+                "subcategory": "nechty",
+                "title": "nazov",
+                "text": "nieco",
+                "adress": "Brno kralovo pole",
+                "email": "asdd@gmailc.om",
+                "rezervacie": [
+                    "3January2024"
+                ]
+            }
+        ]
+    }
+]
